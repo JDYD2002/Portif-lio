@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio - Seu Nome</title>
+  <!-- Google Fonts: Montserrat para títulos e Open Sans para textos -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
+
+  <!-- Favicon (ícone da aba do navegador) -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navegação fixa no topo -->
+  <nav>
+    <ul>
+      <li><a href="#" class="nav-link active">Home</a></li>
+      <li><a href="#" class="nav-link">Sobre</a></li>
+      <li><a href="#" class="nav-link">Projetos</a></li>
+      <li><a href="#" class="nav-link">Contato</a></li>
+    </ul>
+  </nav>
+
+  <button id="btnTopo" title="Voltar ao topo">↑</button>
+
+  <div class="sections-wrapper">
+    <section id="home" class="section active">
+      <h1 class="typing reveal home-header"></h1>
+      <p class="reveal home-paragraph">Apenas um estudante de Engenharia da Computação</p>
+    </section>
+
+<section id="sobre" class="section sobre-section">
+  <div class="portfolio-card" tabindex="0">
+    <img src="fee.png"Foto do Felipe Braga Ribeiro</>
+    <div class="sobre-texto">
+      <h2>Sobre Mim</h2>
+      <p>
+        Olá! Sou <strong>Felipe Braga Ribeiro</strong>, tenho 23 anos e sou de
+        <strong>Belém - PA</strong>. Estou cursando
+        <strong>Engenharia da Computação</strong> (1º semestre na Estácio) e sou
+        formado como <strong>Técnico em Informática</strong>.
+      </p>
+      <p>
+        Sou apaixonado por tecnologia, com foco em
+        <strong>desenvolvimento de sistemas</strong>,
+        <strong>web</strong> e
+        <strong>inteligência artificial</strong>. Trabalhei como
+        <strong>embalador no Grupo Líder (2021-2024)</strong>, com experiência em
+        logística e sistemas de notas fiscais eletrônicas (DANFE).
+      </p>
+
+      <h3 class="subtitulo">Meu Portfólio Profissional</h3>
+      <p>
+        Aqui você encontra os principais projetos em que trabalhei, incluindo
+        desenvolvimento web, inteligência artificial e outras tecnologias que
+        domino. Este espaço representa minha dedicação e paixão pela área de
+        tecnologia.
+      </p>
+     <a href="Felipe Braga 3.pdf" download class="botao-chamativo">
+  Ver Currículo
+</a>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="projetos" class="section">
+  <h2 class="titulo-centro projetos-title">Projetos</h2>
+  <div class="projetos-container">
+    <div class="projeto-card reveal">
+      <h3>Jesusinho Virtual</h3>
+      <p>Assistente espiritual com IA (OpenAI, HuggingFace, AI21), voz (gTTS), animações e memória de conversa.</p>
+      <p class="tech">Techs: JS, HTML, CSS, Python (FastAPI), Render, Netlify</p>
+      <a href="https://jesusinho.netlify.app/" class="github-link" target="_blank">🌐 Frontend</a><br>
+      <a href="https://jesusinho-bot.onrender.com" class="github-link" target="_blank">🧠 Backend</a><br>
+      <a href="https://github.com/jdyd2002/Jesusinho" class="github-link" target="_blank">📁 Código</a>
+    </div>
+
+    <div class="projeto-card reveal">
+      <h3>Portfólio Responsivo</h3>
+      <p>Site pessoal com transições suaves entre abas, visual limpo e efeito "slide lateral".</p>
+      <p class="tech">Techs: HTML, CSS, JavaScript</p>
+      <a href="https://github.com/jdyd2002/portfolio" class="github-link" target="_blank">📁 Código</a>
+    </div>
+
+    <div class="projeto-card reveal">
+      <h3>Site da Igreja + Jesusinho</h3>
+      <p>Website do grupo de jovens com galeria, formulário de contato, carrossel e integração do Jesusinho via botão flutuante.</p>
+      <p class="tech">Techs: HTML, CSS, JS, APIs, Netlify</p>
+      <a href="https://jdyd2002.github.io/JD/" class="github-link" target="_blank">🌐 Ver Site</a>
+    </div>
+
+    <div class="projeto-card reveal">
+      <h3>Mini IA no Telegram</h3>
+      <p>Bot no Telegram com respostas programadas. Primeira versão de um assistente com backend em Python.</p>
+      <p class="tech">Techs: Python, Telegram Bot API</p>
+      <a href="https://github.com/JDYD2002/jesusinho-bot" class="github-link" target="_blank">📁 Código</a>
+      <a href="https://jesusinho-bot.onrender.com" class="github-link" target="_blank">🧠 Backend</a><br>
+    </div>
+  </div>
+
+  <div class="video-card reveal">
+    <h3>Demo do Jesusinho Virtual</h3>
+    <video controls width="100%" height="auto" poster="thumbnail.jpg">
+      <source src="Jesusinho Virtual ✨ e mais 11 páginas - Pessoal — Microsoft​ Edge 2025-06-12 13-45-17.mp4"video/mp4" />
+      Seu navegador não suporta vídeo.
+    </video>
+  </div>
+</section>
+
+    <section id="contato" class="section">
+      <h2 class="reveal contato-title">Contato</h2>
+      <form id="form-contato" class="reveal contato-form">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

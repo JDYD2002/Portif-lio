@@ -1,0 +1,767 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte geral e fundo animado */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(-45deg, #1e3c72, #2a5298, #00d4ff, #008dbf, #1e3c72);
+  background-size: 400% 400%;
+  animation: backgroundColorShift 20s ease infinite;
+  color: #eee;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding-top: 60px; /* espaço para nav fixa */
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased; /* melhora suavidade da fonte */
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden; /* ou auto, se quiser rolagem vertical */
+}
+
+/* Animação de background */
+@keyframes backgroundColorShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Navegação fixa no topo */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.75); /* leve aumento de opacidade para melhor contraste */
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap; /* permite quebra em telas menores */
+  justify-content: center;
+}
+
+nav ul li a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s, text-shadow 0.3s;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+nav ul li a.active,
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #00d4ff;
+  text-shadow: 0 0 10px #00d4ff;
+  outline-offset: 2px;
+  outline-color: #00d4ff;
+  outline-style: solid;
+  outline-width: 2px;
+  background-color: rgba(0, 212, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Header Home */
+.home-header {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #00d4ff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.home-header::after {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background-color: #ffd700;
+  margin-left: 5px;
+  vertical-align: bottom;
+  border-right: 3px solid #ffd700;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 4s steps(30, end), blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+button:focus,
+a:focus {
+  outline: 2px solid #00d4ff;
+  outline-offset: 4px;
+}
+
+.home-paragraph {
+  font-size: 1.2rem;
+  color: #ddd;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Título Sobre Mim */
+.sobre-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  color: #ff6f61; /* cor diferente para destacar */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Container e texto da seção sobre mim */
+.sobre-section {
+  max-width: 900px;
+  background-color: #fff;
+  border-radius: 25px;
+  padding: 3rem;
+  margin: 3rem auto;
+  box-shadow: 0 15px 35px rgba(0, 188, 212, 0.3);
+  color: #222;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: center;
+}
+
+.sobre-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sobre-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+}
+
+.sobre-container img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #00bcd4;
+  box-shadow: 0 12px 28px rgba(0, 188, 212, 0.35);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.sobre-container img:hover,
+.sobre-container img:focus {
+  transform: scale(1.07);
+  outline: none;
+}
+
+.sobre-texto p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+.subtitulo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00bcd4;
+  margin-bottom: 1rem;
+}
+
+/* Lista de habilidades e redes */
+.habilidades,
+.redes {
+  list-style: none;
+  padding-left: 0;
+}
+
+.habilidades li,
+.redes li {
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.habilidades li::before {
+  content: "✔️";
+  margin-right: 0.5rem;
+  color: #00bcd4;
+}
+
+.redes li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.3s ease;
+  color: #007c91;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.redes li a:hover {
+  color: #004d5f;
+  text-decoration: underline;
+}
+
+/* Estilo da imagem da seção Sobre */
+.sobre-container img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+  border: 5px solid #00bcd4;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  align-self: center;
+}
+
+.sobre-container img:hover,
+.sobre-container img:focus {
+  transform: scale(1.05);
+  outline: none;
+}
+
+/* Layout horizontal para telas maiores */
+@media (min-width: 768px) {
+  .sobre-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem; /* mais espaço entre imagem e texto */
+  }
+
+  /* Ajusta a imagem para ser maior */
+  .sobre-container img {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Texto ocupar o restante do espaço */
+  .sobre-texto {
+    flex: 1;
+  }
+}
+
+/* Título Projetos */
+.projetos-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  color: #00d4ff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  margin-bottom: 1rem;
+  text-align: center;
+  margin-top: -40px; /* Sobe o elemento 20px */
+}
+
+/* Container de projetos em grid responsivo */
+.projetos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  padding: 0 1rem;
+  margin-top: 70px; /* Sobe o elemento 20px */
+}
+
+/* Cards de projetos */
+.projeto-card {
+  background: rgba(0, 51, 102, 0.8); /* Azul escuro semi-transparente */
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 300px;
+  box-shadow: 0 0 15px #003366cc; /* Sombra azul escuro */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  position: relative;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projeto-card:hover,
+.projeto-card:focus-within {
+  transform: translateY(-10px);
+  box-shadow: 0 0 40px 5px #3399ffcc; /* sombra maior e mais brilhante azul claro */
+  outline: none;
+}
+
+.projeto-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  color: #66b2ff; /* Azul claro */
+  margin-bottom: 0.5rem;
+}
+
+.projeto-card p {
+  font-size: 1rem;
+ color: #a3cfff; /* Azul mais suave para o texto */
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.projeto-card .tech {
+  font-size: 0.9rem;
+
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.projeto-card .github-link {
+  align-self: flex-start;
+  color: #00d4ff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.projeto-card .github-link:hover,
+.projeto-card .github-link:focus {
+  text-decoration: underline;
+  color: #00aaff;
+  outline: none;
+}
+
+/* Card de vídeo */
+.video-card {
+  background: rgba(0, 51, 102, 0.8); /* Azul escuro */
+  border-radius: 10px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 960px;
+  box-shadow: 0 0 15px #00d4ff44;
+  margin: 2rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ddd;
+}
+
+.video-card h3 {
+  margin-bottom: 1rem;
+  color: #00aaff;
+}
+
+.video-card:hover,
+.video-card:focus-within {
+ box-shadow: 0 0 40px 5px #3399ffcc; /* sombra maior e mais brilhante */
+  outline: none;
+}
+
+/* Formulário de contato */
+.contato-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  color: #ffd700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.contato-form {
+  max-width: 400px;
+  margin: 0 auto 3rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input,
+textarea {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #222;
+  color: #eee;
+  box-shadow: inset 0 0 5px rgba(0, 212, 255, 0.3);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #999;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid #00d4ff;
+  background-color: #111;
+  color: #fff;
+}
+
+/* Botão submit estilizado */
+button[type="submit"],
+.botao-chamativo {
+  background: linear-gradient(270deg, #00d4ff, #008dbf, #00f2fe);
+  background-size: 600% 600%;
+  animation: gradienteAnim 10s ease infinite;
+  color: #111;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  align-self: flex-start;
+  user-select: none;
+}
+
+button[type="submit"]:hover,
+.botao-chamativo:hover {
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.8);
+}
+
+/* Animação do gradiente do botão */
+@keyframes gradienteAnim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Botão voltar ao topo */
+#btnTopo {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #00d4ff;
+  color: #111;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 15px #00d4ffcc;
+  z-index: 9999;
+}
+
+#btnTopo.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Scroll reveal (fade up) para seções */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Container para as seções com scroll snap e transição horizontal */
+.sections-wrapper {
+  display: flex;
+  width: 400vw; /* para 4 seções lado a lado */
+  transition: transform 0.7s ease-in-out;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: x mandatory;
+  margin-top: 60px; /* espaço para nav */
+}
+
+.section {
+
+  scroll-snap-align: start;
+  overflow-x: auto; /* ou overflow-y: auto? */
+  min-width: 100vw;
+  padding: 3rem 4rem;
+  overflow-y: auto;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+   -webkit-overflow-scrolling: touch;
+}
+
+.section.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.section#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* <- isso aqui centraliza o texto */
+  color: #ffd700;
+}
+#sobre,
+.sobre-container,
+
+.sobre-texto {
+  background: transparent !important;
+    flex: 1;
+  text-align: left;
+  padding-left: 80px;  /* aumenta esse valor para afastar mais */
+}
+
+/* Container pai que centraliza o card na tela */
+.sobre-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ocupa tela toda para centralizar verticalmente */
+  background: #f5f8fa; /* fundo claro para contraste */
+  padding: 2rem;
+}
+.botao-chamativo {
+  margin-top: 20px;
+}
+.portfolio-card {
+  max-width: 2000px;
+  width: 100vw;
+  padding: 60px 80px;
+  background: linear-gradient(270deg, #0a1a2a, #002244, #0a1a2a);
+  background-size: 600% 600%;
+  animation: gradientAnim 15s ease infinite;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+
+  display: flex;            /* Flexbox para alinhar lado a lado */
+  flex-direction: row;      /* Linha (horizontal) */
+  justify-content: flex-start; /* Alinha ao começo para foto à esquerda */
+  align-items: center;      /* Centraliza verticalmente */
+
+  margin: 0 auto;
+  gap: 40px;                /* Espaço entre foto e texto */
+}
+  
+
+.portfolio-card:hover {
+  box-shadow: 0 0 60px #5599ff;
+  transform: scale(1.05);
+}
+
+.portfolio-card h2 {
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+
+.portfolio-card p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin-bottom: 18px;
+  flex-grow: 1; /* para texto ocupar espaço e manter altura fixa */
+}
+
+.portfolio-card .botao-chamativo {
+  align-self: flex-start;
+  font-size: 1.1rem;
+  padding: 10px 24px;
+  background-color: #3366cc;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.portfolio-card .botao-chamativo:hover {
+  background-color: #5588ff;
+}
+
+@keyframes gradientAnim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* Efeito "acender" no hover */
+.portfolio-card:hover,
+.portfolio-card:focus {
+  box-shadow:
+    0 0 20px 5px rgba(0, 102, 204, 0.8),
+    0 0 40px 10px rgba(0, 153, 255, 0.7),
+    0 0 60px 20px rgba(0, 204, 255, 0.6);
+  transform: scale(1.02);
+  outline: none;
+}
+
+/* Foto ocupa 40% */
+.portfolio-card img {
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+/* Texto ocupa 60% com padding */
+.portfolio-card .sobre-texto {
+  width: 60%;
+  padding: 3rem 3rem 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Títulos e textos */
+.portfolio-card h2 {
+  font-size: 2.8rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.portfolio-card p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #e0f7ff;
+}
+
+/* Botão */
+.portfolio-card .botao-chamativo {
+  width: max-content;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #0066cc;
+  border: none;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 102, 204, 0.6);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  align-self: flex-start;
+}
+
+.portfolio-card .botao-chamativo:hover,
+.portfolio-card .botao-chamativo:focus {
+  box-shadow: 0 8px 25px rgba(0, 102, 204, 0.9);
+  background: #004a99;
+  outline: none;
+}
+
+
+/* Responsividade: empilha no celular */
+@media (max-width: 768px) {
+  .sobre-section {
+    padding: 1rem;
+  }
+  
+  .portfolio-card {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .portfolio-card img {
+    width: 100%;
+    height: 300px;
+  }
+
+  .portfolio-card .sobre-texto {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+
+  .portfolio-card h2 {
+    font-size: 2rem;
+  }
+
+  .portfolio-card p {
+    font-size: 1rem;
+  }
+
+  .portfolio-card .botao-chamativo {
+    align-self: center;
+  }
+}
+
+
+
+
+/* Responsividade para telas pequenas */
+@media (max-width: 900px) {
+  .sections-wrapper {
+    flex-direction: column;
+    width: 100vw;
+    height: auto;
+  }
+
+  .section {
+    min-width: 100vw;
+    height: auto;
+    margin-top: 1rem;
+    padding: 2rem;
+  }
+  nav ul {
+    gap: 1rem;
+  }
+  .projetos-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
