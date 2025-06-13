@@ -446,6 +446,30 @@ button[type="submit"]:hover,
   }
 }
 
+/* Botão voltar ao topo */
+#btnTopo {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #00d4ff;
+  color: #111;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 15px #00d4ffcc;
+  z-index: 9999;
+}
+
+#btnTopo.show {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 /* Scroll reveal (fade up) para seções */
 .reveal {
