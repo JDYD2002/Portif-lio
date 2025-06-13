@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfólio - Seu Nome</title>
   <!-- Google Fonts: Montserrat para títulos e Open Sans para textos -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
@@ -32,7 +33,7 @@
 
 <section id="sobre" class="section sobre-section">
   <div class="portfolio-card" tabindex="0">
-    <img src="fee.png"Foto do Felipe Braga Ribeiro</>
+  <img src="fee.png" alt="Foto do Felipe Braga Ribeiro" />
     <div class="sobre-texto">
       <h2>Sobre Mim</h2>
       <p>
@@ -57,8 +58,7 @@
         domino. Este espaço representa minha dedicação e paixão pela área de
         tecnologia.
       </p>
-     <a href="Felipe Braga 3.pdf" download class="botao-chamativo">
-  Ver Currículo
+   <a href="Felipe Braga 3.pdf" download class="botao-chamativo">Ver Currículo</a>
 </a>
       </button>
     </div>
@@ -68,13 +68,16 @@
 <section id="projetos" class="section">
   <h2 class="titulo-centro projetos-title">Projetos</h2>
   <div class="projetos-container">
+
     <div class="projeto-card reveal">
       <h3>Jesusinho Virtual</h3>
       <p>Assistente espiritual com IA (OpenAI, HuggingFace, AI21), voz (gTTS), animações e memória de conversa.</p>
       <p class="tech">Techs: JS, HTML, CSS, Python (FastAPI), Render, Netlify</p>
       <a href="https://jesusinho.netlify.app/" class="github-link" target="_blank">🌐 Frontend</a><br>
       <a href="https://jesusinho-bot.onrender.com" class="github-link" target="_blank">🧠 Backend</a><br>
-      <a href="https://github.com/jdyd2002/Jesusinho" class="github-link" target="_blank">📁 Código</a>
+      <a href="https://github.com/jdyd2002/Jesusinho" class="github-link" target="_blank">📁 Código</a><br>
+      <!-- Botão Demo -->
+      <button id="btnDemo" class="botao-chamativo">Ver Demo</button>
     </div>
 
     <div class="projeto-card reveal">
@@ -100,14 +103,18 @@
     </div>
   </div>
 
-  <div class="video-card reveal">
-    <h3>Demo do Jesusinho Virtual</h3>
-    <video controls width="100%" height="auto" poster="thumbnail.jpg">
-      <source src="Jesusinho Virtual ✨ e mais 11 páginas - Pessoal — Microsoft​ Edge 2025-06-12 13-45-17.mp4"video/mp4" />
-      Seu navegador não suporta vídeo.
-    </video>
+  <!-- Modal do vídeo-->
+  <div id="modalDemo" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <video width="100%" controls autoplay muted>
+        <source src="Jesusinho Virtual ✨ e mais 11 páginas - Pessoal — Microsoft​ Edge 2025-06-12 13-45-17.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeo.
+      </video>
+    </div>
   </div>
 </section>
+
 
     <section id="contato" class="section">
       <h2 class="reveal contato-title">Contato</h2>
