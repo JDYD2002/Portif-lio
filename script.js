@@ -1,5 +1,3 @@
-// Seu código atual...
-
 // Seleção dos elementos
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.section');
@@ -57,8 +55,8 @@ function activateSection(index) {
   // Move o wrapper
   sectionsWrapper.style.transform = `translateX(-${index * 100}vw)`;
 
-  // Scroll para topo da seção
-  sections[index].scrollTop = 0;
+  // Scroll para topo da janela
+  window.scrollTo(0, 0);
 
   // Salva índice no localStorage para manter após reload
   localStorage.setItem('activeSectionIndex', index);
@@ -113,13 +111,6 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(section => {
   sectionObserver.observe(section);
 });
-window.addEventListener('load', () => {
-  window.scrollTo(0, 0);
-});
-
-window.addEventListener('beforeunload', () => {
-  window.scrollTo(0, 0);
-});
 
 // Função para animar elementos já visíveis no scroll e no load
 function scrollReveal() {
@@ -130,7 +121,7 @@ function scrollReveal() {
   });
 }
 
-// Evento load - reseta tudo para o estado inicial
+// Evento load - inicializa tudo
 window.addEventListener('load', () => {
   // Lê o índice salvo no localStorage ou usa 0 como padrão
   const savedIndex = localStorage.getItem('activeSectionIndex');
@@ -146,7 +137,6 @@ window.addEventListener('load', () => {
   window.scrollTo(0, 0);
 });
 
-
 // ======================
 // Modal do vídeo Jesusinho
 // ======================
@@ -160,23 +150,27 @@ if (btnDemo && modalDemo && closeModal) {
     modalDemo.style.display = "flex";
   });
 
-  closeModal.addEventListener("click", () => {
+  function closeVideoModal() {
     modalDemo.style.display = "none";
-    const video = modalDemo.querySelector("video");
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
+    const iframe = modalDemo.querySelector("iframe");
+    if (iframe) {
+      const src = iframe.src;
+      iframe.src = "";
+      iframe.src = src;
     }
-  });
+  }
+
+  closeModal.addEventListener("click", closeVideoModal);
 
   modalDemo.addEventListener("click", (e) => {
     if (e.target === modalDemo) {
-      modalDemo.style.display = "none";
-      const video = modalDemo.querySelector("video");
-      if (video) {
-        video.pause();
-        video.currentTime = 0;
-      }
+      closeVideoModal();
+    }
+  });
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modalDemo.style.display === 'flex') {
+      closeVideoModal();
     }
   });
 }
