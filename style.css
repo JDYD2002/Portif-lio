@@ -765,6 +765,7 @@ button[type="submit"]:hover,
     gap: 1.5rem;
   }
 }
+
 /* Telas muito pequenas (ex: 320px a 480px) */
 @media (max-width: 480px) {
   body {
