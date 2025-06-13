@@ -1,12 +1,12 @@
+// Seu código atual...
+
 // Seleção dos elementos
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.section');
 const sectionsWrapper = document.querySelector('.sections-wrapper');
-
 const typingElement = document.querySelector('.home-header'); // ou '.typing'
 const text = typingElement ? typingElement.textContent : '';
 if (typingElement) typingElement.textContent = '';
-
 let i = 0;
 
 // Função de digitação inicial (para o header, se houver)
@@ -55,8 +55,8 @@ function activateSection(index) {
   // Move o wrapper
   sectionsWrapper.style.transform = `translateX(-${index * 100}vw)`;
 
-  // Scroll para topo da janela
-  window.scrollTo(0, 0);
+  // Scroll para topo da seção
+  sections[index].scrollTop = 0;
 
   // Salva índice no localStorage para manter após reload
   localStorage.setItem('activeSectionIndex', index);
@@ -74,6 +74,7 @@ navLinks.forEach((link, index) => {
     activateSection(index);
   });
 });
+
 
 // Formulário (demo)
 const formContato = document.getElementById('form-contato');
@@ -111,6 +112,13 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(section => {
   sectionObserver.observe(section);
 });
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
 
 // Função para animar elementos já visíveis no scroll e no load
 function scrollReveal() {
@@ -121,7 +129,7 @@ function scrollReveal() {
   });
 }
 
-// Evento load - inicializa tudo
+// Evento load - reseta tudo para o estado inicial
 window.addEventListener('load', () => {
   // Lê o índice salvo no localStorage ou usa 0 como padrão
   const savedIndex = localStorage.getItem('activeSectionIndex');
@@ -137,6 +145,7 @@ window.addEventListener('load', () => {
   window.scrollTo(0, 0);
 });
 
+
 // ======================
 // Modal do vídeo Jesusinho
 // ======================
@@ -150,27 +159,23 @@ if (btnDemo && modalDemo && closeModal) {
     modalDemo.style.display = "flex";
   });
 
-  function closeVideoModal() {
+  closeModal.addEventListener("click", () => {
     modalDemo.style.display = "none";
-    const iframe = modalDemo.querySelector("iframe");
-    if (iframe) {
-      const src = iframe.src;
-      iframe.src = "";
-      iframe.src = src;
-    }
-  }
-
-  closeModal.addEventListener("click", closeVideoModal);
-
-  modalDemo.addEventListener("click", (e) => {
-    if (e.target === modalDemo) {
-      closeVideoModal();
+    const video = modalDemo.querySelector("video");
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
     }
   });
 
-  window.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modalDemo.style.display === 'flex') {
-      closeVideoModal();
+  modalDemo.addEventListener("click", (e) => {
+    if (e.target === modalDemo) {
+      modalDemo.style.display = "none";
+      const video = modalDemo.querySelector("video");
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
     }
   });
 }
