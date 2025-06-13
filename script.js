@@ -1,3 +1,5 @@
+// Seu código atual...
+
 // Seleção dos elementos
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.section');
@@ -159,3 +161,38 @@ window.addEventListener('load', () => {
   // Scroll para topo da janela
   window.scrollTo(0, 0);
 });
+
+
+// ======================
+// Modal do vídeo Jesusinho
+// ======================
+
+const btnDemo = document.getElementById("btnDemo");
+const modalDemo = document.getElementById("modalDemo");
+const closeModal = document.getElementById("closeModal");
+
+if (btnDemo && modalDemo && closeModal) {
+  btnDemo.addEventListener("click", () => {
+    modalDemo.style.display = "flex";
+  });
+
+  closeModal.addEventListener("click", () => {
+    modalDemo.style.display = "none";
+    const video = modalDemo.querySelector("video");
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  });
+
+  modalDemo.addEventListener("click", (e) => {
+    if (e.target === modalDemo) {
+      modalDemo.style.display = "none";
+      const video = modalDemo.querySelector("video");
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    }
+  });
+}
