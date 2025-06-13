@@ -544,7 +544,7 @@ button[type="submit"]:hover,
   padding-bottom: 20px;
   max-width: 1940px;
   width: 100vw;
-  padding: 60px 90px;
+  padding: 60px 80px;
   background: linear-gradient(270deg, #0a1a2a, #002244, #0a1a2a);
   background-size: 600% 600%;
   animation: gradientAnim 15s ease infinite;
