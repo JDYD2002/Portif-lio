@@ -77,22 +77,6 @@ navLinks.forEach((link, index) => {
   });
 });
 
-// Botão voltar ao topo
-const btnTopo = document.getElementById('btnTopo');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 200) {
-    btnTopo.classList.add('show');
-  } else {
-    btnTopo.classList.remove('show');
-  }
-  scrollReveal();
-});
-
-btnTopo.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
 // Formulário (demo)
 const formContato = document.getElementById('form-contato');
 if (formContato) {
