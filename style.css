@@ -723,8 +723,6 @@ button[type="submit"]:hover,
 }
 
 
-
-
 /* Responsividade para telas pequenas */
 @media (max-width: 900px) {
   .sections-wrapper {
