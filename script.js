@@ -10,26 +10,6 @@ const text = typingElement ? typingElement.textContent : '';
 if (typingElement) typingElement.textContent = '';
 
 let i = 0;
-  document.addEventListener('DOMContentLoaded', function() {
-    const hamburguer = document.querySelector('.hamburguer');
-    const navMenu = document.querySelector('nav ul');
-    
-    hamburguer.addEventListener('click', function() {
-      hamburguer.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      
-      // Animação para as barras
-      if (hamburguer.classList.contains('active')) {
-        hamburguer.querySelector('.bar:nth-child(1)').style.transform = 'translateY(8px) rotate(45deg)';
-        hamburguer.querySelector('.bar:nth-child(2)').style.opacity = '0';
-        hamburguer.querySelector('.bar:nth-child(3)').style.transform = 'translateY(-8px) rotate(-45deg)';
-      } else {
-        hamburguer.querySelector('.bar:nth-child(1)').style.transform = 'translateY(0) rotate(0)';
-        hamburguer.querySelector('.bar:nth-child(2)').style.opacity = '1';
-        hamburguer.querySelector('.bar:nth-child(3)').style.transform = 'translateY(0) rotate(0)';
-      }
-    });
-  });
 
 // Função de digitação inicial (para o header, se houver)
 function type() {
