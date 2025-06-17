@@ -651,6 +651,12 @@ button[type="submit"]:hover,
   background: #004a99;
   outline: none;
 }
+.container-principal {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* altura fixa para desktop */
+  overflow: hidden; /* sem scroll vertical */
+}
 
 /* Carde demo */
 .modal {
@@ -664,29 +670,44 @@ button[type="submit"]:hover,
   align-items: center;
 }
 /* Media Queries para celulares (até 600px) */
-@media only screen and (max-width: 600px) {
-  /* Nav: mais espaçamento e links empilhados */
+/* Mobile - telas até 768px */
+@media (max-width: 768px) {
   nav {
-    padding: 1rem 0rem;
+    padding: 1rem 0;
     margin-bottom: 1rem;
   }
 
- /* Body rolagem vertical */
-  body { overflow-y: auto; }
-
-  /* Seções verticalizadas sem scroll-snap */
-  .sections-wrapper {
-    display: block;
-    width: auto;
-    height: auto;
-    margin-top: calc(60px + 2rem);
-    overflow: visible;
-    scroll-snap-type: none;
+  body {
+    overflow-y: auto; /* scroll vertical liberado só no mobile */
+    overflow-x: hidden; /* evitar scroll horizontal */
   }
+
+  .container-principal {
+    display: flex;
+    flex-direction: column; /* empilha vertical */
+    height: auto;           /* altura automática */
+    overflow-y: auto;       /* libera scroll vertical */
+  }
+
+  .sections-wrapper {
+    display: block !important;  /* bloqueia display flex para layout vertical */
+    width: 100% !important;
+    height: auto !important;
+    margin-top: calc(60px + 2rem);
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    transform: none !important;  /* remove transform do slide horizontal */
+    scroll-snap-type: none !important;
+  }
+
   .section {
-    width: 100%;
+    width: 100% !important;
+    height: auto !important;
     padding: 2rem 1.5rem;
-    scroll-snap-align: none;
+    scroll-snap-align: none !important;
+    float: none !important;
+    position: static !important;
+    margin-bottom: 2rem; /* dá espaçamento vertical entre seções */
   }
 
   /* Sobre e portfolio cards em coluna */
@@ -696,20 +717,48 @@ button[type="submit"]:hover,
     padding: 1.5rem;
     gap: 1.5rem;
   }
-  .sobre-container { flex-direction: column; gap: 1rem; }
-  .sobre-container img { width: 200px; height: 200px; }
+
+  .sobre-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sobre-container img {
+    width: 200px;
+    height: 200px;
+  }
 
   /* Projetos: 1 coluna */
-  .projetos-container { grid-template-columns: 1fr; padding: 0 1rem; }
-  .projeto-card { width: 100%; max-width: 100%; }
+  .projetos-container {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .projeto-card {
+    width: 100%;
+    max-width: 100%;
+  }
 
   /* Contato e formulário centralizados */
-  .contato-form { width: 90%; margin: 0 auto 2rem; }
+  .contato-form {
+    width: 90%;
+    margin: 0 auto 2rem;
+  }
 
   /* Portfolio-card: imagem e texto empilhados */
-  .portfolio-card img { width: 100%; height: auto; }
-  .portfolio-card .sobre-texto { width: 100%; padding: 1rem; }
+  .portfolio-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .portfolio-card .sobre-texto {
+    width: 100%;
+    padding: 1rem;
+  }
 
   /* Botão topo mais próximo */
-  #btnTopo { bottom: 20px; right: 20px; }
+  #btnTopo {
+    bottom: 20px;
+    right: 20px;
+  }
 }
