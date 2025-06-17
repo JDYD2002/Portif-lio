@@ -687,21 +687,3 @@ button[type="submit"]:hover,
   align-items: center;
 }
 
-/* Médias telas (tablets, por exemplo) */
-@media (min-width: 768px) {
-    /* Ajustes para tablet */
-    .sections-wrapper {
-        flex-direction: row; /* Volta para horizontal */
-        width: 400vw; /* Se ainda quiser a rolagem horizontal */
-    }
-    .section {
-        min-width: 100vw;
-        height: 100vh; /* Ajusta a altura novamente */
-        /* ... */
-    }
-}
-
-/* Telas grandes (desktops) */
-@media (min-width: 1200px) {
-    /* Ajustes para desktop */
-}
