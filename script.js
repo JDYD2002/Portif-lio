@@ -1,20 +1,26 @@
-// Seu código atual...
+// script.js
 
 // Seleção dos elementos
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.section');
 const sectionsWrapper = document.querySelector('.sections-wrapper');
+const btnTopo = document.getElementById('btnTopo');
+const typingElement = document.querySelector('.home-header');
+const formContato = document.getElementById('form-contato');
+const alertaSucesso = document.getElementById('alertaSucesso');
+const btnDemo = document.getElementById("btnDemo");
+const modalDemo = document.getElementById("modalDemo");
+const closeModal = document.getElementById("closeModal");
+
 function isMobile() {
   return window.innerWidth <= 768;
 }
 
-const typingElement = document.querySelector('.home-header'); // ou '.typing'
-const text = typingElement ? typingElement.textContent : '';
+// Efeito de digitação inicial (header home)
+let text = typingElement ? typingElement.textContent : '';
 if (typingElement) typingElement.textContent = '';
 
 let i = 0;
-
-// Função de digitação inicial (para o header, se houver)
 function type() {
   if (i < text.length) {
     typingElement.textContent += text.charAt(i);
@@ -22,17 +28,16 @@ function type() {
     setTimeout(type, 100);
   }
 }
-
-// Inicia a digitação inicial se o elemento existir
 if (typingElement) type();
 
-// Texto para efeito de digitação (ex: Home)
+// Efeito digitação "Olá, sou o Felipe" na classe .typing (se existir)
 const typing = document.querySelector('.typing');
 const fullText = "Olá, sou o Felipe ";
 let typingIndex = 0;
 let typingTimeout;
 
 function typingEffect() {
+  if (!typing) return;
   if (typingIndex < fullText.length) {
     typing.textContent += fullText.charAt(typingIndex);
     typingIndex++;
@@ -41,18 +46,18 @@ function typingEffect() {
 }
 
 function restartTypingAnimation() {
+  if (!typing) return;
   clearTimeout(typingTimeout);
   typing.textContent = "";
   typingIndex = 0;
   typingEffect();
 }
 
+// Função para ativar seção (mobile/desktop)
 function activateSection(index) {
-  // Remove active de todos
   navLinks.forEach(l => l.classList.remove('active'));
   sections.forEach(sec => sec.classList.remove('active'));
 
-  // Adiciona active no atual
   navLinks[index].classList.add('active');
   sections[index].classList.add('active');
 
@@ -61,7 +66,7 @@ function activateSection(index) {
     sectionsWrapper.style.transform = `translateX(-${index * 100}vw)`;
     sections[index].scrollTop = 0;
   } else {
-    // Mobile: scroll vertical normal
+    // Mobile: scroll vertical
     sectionsWrapper.style.transform = '';
     sections[index].scrollIntoView({ behavior: 'smooth' });
   }
@@ -73,7 +78,7 @@ function activateSection(index) {
   }
 }
 
-// Evento dos links do menu
+// Eventos de clique no menu
 navLinks.forEach((link, index) => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -82,8 +87,6 @@ navLinks.forEach((link, index) => {
 });
 
 // Botão voltar ao topo
-const btnTopo = document.getElementById('btnTopo');
-
 window.addEventListener('scroll', () => {
   if (window.scrollY > 200) {
     btnTopo.classList.add('show');
@@ -92,22 +95,37 @@ window.addEventListener('scroll', () => {
   }
   scrollReveal();
 });
-
 btnTopo.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Formulário (demo)
-const formContato = document.getElementById('form-contato');
+// Formulário contato (envio via formsubmit.co ajax)
 if (formContato) {
-  formContato.addEventListener('submit', e => {
+  formContato.addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert('Mensagem enviada! (funcionalidade backend não implementada)');
-    formContato.reset();
+      alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+  formContato.reset();
+    const formData = new FormData(formContato);
+
+    try {
+      const resposta = await fetch("https://formsubmit.co/ajax/felipebraga233@gmail.com", {
+        method: "POST",
+        body: formData,
+      });
+      if (resposta.ok) {
+        formContato.reset();
+        alertaSucesso.style.display = 'block';
+        setTimeout(() => alertaSucesso.style.display = 'none', 3000);
+      } else {
+        alert("Erro ao enviar a mensagem. Tente novamente mais tarde.");
+      }
+    } catch (error) {
+      alert("Erro ao enviar a mensagem. Verifique sua conexão.");
+    }
   });
 }
 
-// Função para animar os elementos .reveal da seção
+// Animação dos elementos .reveal da seção
 function animateReveal(section) {
   const revealElements = section.querySelectorAll('.reveal');
   revealElements.forEach(el => {
@@ -117,13 +135,12 @@ function animateReveal(section) {
   });
 }
 
-// Intersection Observer para animação
+// IntersectionObserver para animação ao entrar na tela
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       animateReveal(entry.target);
     } else {
-      // Remove animação ao sair da tela (opcional)
       const revealElements = entry.target.querySelectorAll('.reveal');
       revealElements.forEach(el => el.classList.remove('active'));
     }
@@ -133,8 +150,14 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(section => {
   sectionObserver.observe(section);
 });
+
 window.addEventListener('load', () => {
   window.scrollTo(0, 0);
+  // Restaura a seção ativa do localStorage
+  const savedIndex = localStorage.getItem('activeSectionIndex');
+  const index = savedIndex !== null ? parseInt(savedIndex, 10) : 0;
+  activateSection(index);
+  scrollReveal();
 });
 
 window.addEventListener('beforeunload', () => {
@@ -150,31 +173,7 @@ function scrollReveal() {
   });
 }
 
-// Evento load - reseta tudo para o estado inicial
-window.addEventListener('load', () => {
-  // Lê o índice salvo no localStorage ou usa 0 como padrão
-  const savedIndex = localStorage.getItem('activeSectionIndex');
-  const index = savedIndex !== null ? parseInt(savedIndex, 10) : 0;
-
-  // Ativa a seção salva ou a primeira
-  activateSection(index);
-
-  // Anima os elementos que já estão visíveis
-  scrollReveal();
-
-  // Scroll para topo da janela
-  window.scrollTo(0, 0);
-});
-
-
-// ======================
 // Modal do vídeo Jesusinho
-// ======================
-
-const btnDemo = document.getElementById("btnDemo");
-const modalDemo = document.getElementById("modalDemo");
-const closeModal = document.getElementById("closeModal");
-
 if (btnDemo && modalDemo && closeModal) {
   btnDemo.addEventListener("click", () => {
     modalDemo.style.display = "flex";
@@ -182,40 +181,26 @@ if (btnDemo && modalDemo && closeModal) {
 
   closeModal.addEventListener("click", () => {
     modalDemo.style.display = "none";
-    const video = modalDemo.querySelector("video");
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
+    const iframe = modalDemo.querySelector("iframe");
+    if (iframe) {
+      // Para o vídeo do YouTube (reload da src)
+      iframe.src = iframe.src;
     }
   });
 
   modalDemo.addEventListener("click", (e) => {
     if (e.target === modalDemo) {
       modalDemo.style.display = "none";
-      const video = modalDemo.querySelector("video");
-      if (video) {
-        video.pause();
-        video.currentTime = 0;
+      const iframe = modalDemo.querySelector("iframe");
+      if (iframe) {
+        iframe.src = iframe.src;
       }
     }
   });
 }
+
+// Reativa seção ao redimensionar (responsividade)
 window.addEventListener('resize', () => {
   const currentIndex = parseInt(localStorage.getItem('activeSectionIndex'), 10) || 0;
   activateSection(currentIndex);
-});
-document.getElementById('form-contato').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
-  const resposta = await fetch("https://formsubmit.co/ajax/felipebraga233@gmail.com", {
-    method: "POST",
-    body: formData
-  });
-  if (resposta.ok) {
-    form.reset();
-    const alerta = document.getElementById('alertaSucesso');
-    alerta.classList.add('mostrar');
-    setTimeout(() => alerta.classList.remove('mostrar'), 3000); // Some após 3s
-  }
 });
