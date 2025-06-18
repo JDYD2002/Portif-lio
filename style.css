@@ -695,6 +695,26 @@ button[type="submit"]:hover,
 /* Media Queries para celulares (até 600px) */
 /* Mobile - telas até 768px */
 @media (max-width: 768px) {
+  /* Primeiro parágrafo*/
+  .home-paragraph {
+  margin-top: 0; /* tira espaço extra em cima */
+  padding-top: 0; /* remove padding */
+  line-height: 1.4; /* melhora espaçamento entre linhas */
+  font-size: 1.2rem; /* tamanho legível */
+  margin-left: 15px;
+}
+/* eu sou felipe*/
+    .home-header {
+    margin-top: -1200px; /* menos margem no topo pra subir */
+    padding-top: 0;
+    font-size: 1.5rem; /* ajustar tamanho para ficar bom no mobile */
+    margin-left: 20px;
+  }
+
+  #home {
+    padding-top: 10px; /* ajustar o espaçamento do container no topo */
+  }
+}
   nav {
     padding: 1rem 0;
     margin-bottom: 1rem;
@@ -706,14 +726,16 @@ button[type="submit"]:hover,
   }
 
   .container-principal {
+    
     display: flex;
     flex-direction: column; /* empilha vertical */
     height: auto;           /* altura automática */
     overflow-y: auto;       /* libera scroll vertical */
+    padding-bottom: 1rem;   /* evita espaçamento embaixo */
+        overflow: hidden; /* Evita scroll extra */
   }
 
   .sections-wrapper {
-    display: block !important;  /* bloqueia display flex para layout vertical */
     width: 100% !important;
     height: auto !important;
     margin-top: calc(60px + 2rem);
@@ -721,25 +743,49 @@ button[type="submit"]:hover,
     overflow-y: visible !important;
     transform: none !important;  /* remove transform do slide horizontal */
     scroll-snap-type: none !important;
+        overflow: hidden; /* Evita scroll extra */
   }
 
   .section {
     width: 100% !important;
     height: auto !important;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;      /* padding reduzido para menos espaçamento */
     scroll-snap-align: none !important;
     float: none !important;
     position: static !important;
-    margin-bottom: 2rem; /* dá espaçamento vertical entre seções */
+    margin-bottom: 1.2rem;     /* margem menor para reduzir espaçamento */
+   min-height: 100px; /* Garante um espaço mínimo */
+   overflow: visible; /* Evita corte invisível */
+}
+  
+  /* Remove margem no último elemento para evitar espaço extra */
+  .section:last-child {
+    margin-bottom: 0;
   }
 
   /* Sobre e portfolio cards em coluna */
   .sobre-section,
   .portfolio-card {
+    margin-top: -1px;
     flex-direction: column;
     padding: 1.5rem;
     gap: 1.5rem;
+      width: auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-left: -50px; /* Ajuste conforme necessário */
   }
+  .projetos-title {
+  font-size: 2rem; /* ou o tamanho que desejar */
+  text-align: center;
+  margin: 1rem 0;
+  padding: 0 1rem; /* espaçamento lateral para não encostar nas bordas */
+  white-space: nowrap; /* evita quebra de linha */
+  overflow: visible; /* evita corte */
+  margin-top: -30px;
+  margin-left: -30px;
+}
 
   .sobre-container {
     flex-direction: column;
@@ -753,13 +799,16 @@ button[type="submit"]:hover,
 
   /* Projetos: 1 coluna */
   .projetos-container {
+     margin-top: -10px; /* Ajuste conforme necessário */
     grid-template-columns: 1fr;
     padding: 0 1rem;
   }
 
   .projeto-card {
+margin-left: -20px;
     width: 100%;
     max-width: 100%;
+     margin-top: 10px; /* Ajuste conforme necessário */
   }
 
   /* Contato e formulário centralizados */
@@ -783,5 +832,6 @@ button[type="submit"]:hover,
   #btnTopo {
     bottom: 20px;
     right: 20px;
+     display: none;
   }
-}
+
