@@ -4,6 +4,9 @@
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.section');
 const sectionsWrapper = document.querySelector('.sections-wrapper');
+function isMobile() {
+  return window.innerWidth <= 768;
+}
 
 const typingElement = document.querySelector('.home-header'); // ou '.typing'
 const text = typingElement ? typingElement.textContent : '';
@@ -44,7 +47,6 @@ function restartTypingAnimation() {
   typingEffect();
 }
 
-// Função para ativar uma seção pelo índice
 function activateSection(index) {
   // Remove active de todos
   navLinks.forEach(l => l.classList.remove('active'));
@@ -54,16 +56,18 @@ function activateSection(index) {
   navLinks[index].classList.add('active');
   sections[index].classList.add('active');
 
-  // Move o wrapper
-  sectionsWrapper.style.transform = `translateX(-${index * 100}vw)`;
+  if (!isMobile()) {
+    // Desktop: slide horizontal
+    sectionsWrapper.style.transform = `translateX(-${index * 100}vw)`;
+    sections[index].scrollTop = 0;
+  } else {
+    // Mobile: scroll vertical normal
+    sectionsWrapper.style.transform = '';
+    sections[index].scrollIntoView({ behavior: 'smooth' });
+  }
 
-  // Scroll para topo da seção
-  sections[index].scrollTop = 0;
-
-  // Salva índice no localStorage para manter após reload
   localStorage.setItem('activeSectionIndex', index);
 
-  // Reinicia digitação se for home
   if (index === 0) {
     restartTypingAnimation();
   }
@@ -196,3 +200,25 @@ if (btnDemo && modalDemo && closeModal) {
     }
   });
 }
+window.addEventListener('resize', () => {
+  const currentIndex = parseInt(localStorage.getItem('activeSectionIndex'), 10) || 0;
+  activateSection(currentIndex);
+});
+document.getElementById('form-contato').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const resposta = await fetch("https://formsubmit.co/ajax/felipebraga233@gmail.com", {
+    method: "POST",
+    body: formData
+  });
+
+  if (resposta.ok) {
+    form.reset();
+    const alerta = document.getElementById('alertaSucesso');
+    alerta.classList.add('mostrar');
+    setTimeout(() => alerta.classList.remove('mostrar'), 3000); // Some após 3s
+  }
+});
