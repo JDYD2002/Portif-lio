@@ -206,15 +206,12 @@ window.addEventListener('resize', () => {
 });
 document.getElementById('form-contato').addEventListener('submit', async function (e) {
   e.preventDefault();
-
   const form = e.target;
   const formData = new FormData(form);
-
   const resposta = await fetch("https://formsubmit.co/ajax/felipebraga233@gmail.com", {
     method: "POST",
     body: formData
   });
-
   if (resposta.ok) {
     form.reset();
     const alerta = document.getElementById('alertaSucesso');
