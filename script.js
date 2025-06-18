@@ -103,9 +103,12 @@ btnTopo.addEventListener('click', () => {
 if (formContato) {
   formContato.addEventListener('submit', async (e) => {
     e.preventDefault();
-      alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
-  formContato.reset();
+
     const formData = new FormData(formContato);
+
+    alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+
+    formContato.reset();
 
     try {
       const resposta = await fetch("https://formsubmit.co/ajax/felipebraga233@gmail.com", {
