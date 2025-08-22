@@ -692,6 +692,42 @@ button[type="submit"]:hover,
   opacity: 1;
   pointer-events: auto;
 }
+/* Container dos ícones */
+.social-links {
+  display: flex;
+  gap: 20px; /* espaço entre os ícones */
+  justify-content: center; /* centraliza horizontalmente */
+  margin-top: 20px;
+}
+
+/* Estilo dos links/ícones */
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;   /* tamanho do ícone */
+  height: 50px;
+  background-color: #333; /* cor de fundo inicial */
+  color: #fff; /* cor do ícone */
+  border-radius: 50%; /* deixa redondo */
+  font-size: 24px; /* tamanho do ícone */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Hover / efeito quando passa o mouse */
+.social-links a:hover {
+  transform: translateY(-5px) scale(1.1); /* leve movimento */
+  background-color: #0077b5; /* muda cor de fundo (ajuste por rede) */
+  color: #fff; /* garante que o ícone fique branco */
+}
+
+/* Ajustando cores específicas por rede */
+.social-links a:nth-child(1):hover { background-color: #0e76a8; } /* LinkedIn */
+.social-links a:nth-child(2):hover { background-color: #E1306C; } /* Instagram */
+.social-links a:nth-child(3):hover { background-color: #25D366; } /* WhatsApp */
+.social-links a:nth-child(4):hover { background-color: #1877F2; } /* Facebook */
+
 /* Media Queries para celulares (até 600px) */
 /* Mobile - telas até 768px */
 @media (max-width: 768px) {
