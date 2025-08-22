@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfólio - Felipe Braga</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
+
+
+
 </head>
 <body>
   <!-- Navegação fixa no topo -->
@@ -35,7 +40,7 @@
           <p>
             Olá! Sou <strong>Felipe Braga Ribeiro</strong>, tenho 23 anos e sou de
             <strong>Belém - PA</strong>. Estou cursando
-            <strong>Engenharia da Computação</strong> (2º semestre na Estácio) e sou
+            <strong>Engenharia da Computação</strong> (1º semestre na Estácio) e sou
             formado como <strong>Técnico em Informática</strong>.
           </p>
           <p>
@@ -69,7 +74,7 @@
           <p class="tech">Techs: JS, HTML, CSS, Python (FastAPI), Render, Netlify</p>
           <a href="https://jesusinho.netlify.app/" class="github-link" target="_blank" rel="noopener noreferrer">🌐 Frontend</a><br>
           <a href="https://jesusinho-bot.onrender.com" class="github-link" target="_blank" rel="noopener noreferrer">🧠 Backend</a><br>
-          <a href="https://github.com/JDYD2002/JesusBackend" class="github-link" target="_blank" rel="noopener noreferrer">📁 Código</a><br>
+          <a href="https://github.com/jdyd2002/Jesusinho" class="github-link" target="_blank" rel="noopener noreferrer">📁 Código</a><br>
           <button id="btnDemo" class="botao-chamativo">Ver Demo</button>
         </div>
 
@@ -77,7 +82,7 @@
           <h3>Portfólio Responsivo</h3>
           <p>Site pessoal com transições suaves entre abas, visual limpo e efeito "slide lateral".</p>
           <p class="tech">Techs: HTML, CSS, JavaScript</p>
-          <a href="https://github.com/JDYD2002/Portif-lio" class="github-link" target="_blank" rel="noopener noreferrer">📁 Código</a>
+          <a href="https://github.com/jdyd2002/portfolio" class="github-link" target="_blank" rel="noopener noreferrer">📁 Código</a>
         </div>
 
         <div class="projeto-card reveal">
@@ -114,28 +119,34 @@
       </div>
     </section>
 
-    <section id="contato" class="section">
-      <h2 class="reveal contato-title">Contato</h2>
-      <form id="form-contato" class="reveal contato-form">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required autocomplete="name" />
+<section id="contato" class="section">
+  <h2 class="reveal contato-title">Contato</h2>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required autocomplete="email" />
+  <form id="form-contato" class="reveal contato-form">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required autocomplete="name" />
 
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" required autocomplete="off"></textarea>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required autocomplete="email" />
 
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-  </div>
+    <label for="mensagem">Mensagem:</label>
+    <textarea id="mensagem" name="mensagem" required autocomplete="off"></textarea>
+
+    <button type="submit">Enviar</button>
+  </form>
 
   <div id="alertaSucesso" class="alerta-topo" role="alert" aria-live="polite" style="display:none;">
     Mensagem enviada com sucesso!
   </div>
 
+ <div class="social-links">
+  <a href="https://www.linkedin.com/in/felipebraga233/" target="_blank"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/febrraga/" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://wa.me/55SEUNUMERO" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.facebook.com/felipe.braga.7798" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</div>
+</section>
+
   <script src="script.js"></script>
 </body>
 </html>
-
