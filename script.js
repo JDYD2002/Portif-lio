@@ -207,3 +207,32 @@ window.addEventListener('resize', () => {
   const currentIndex = parseInt(localStorage.getItem('activeSectionIndex'), 10) || 0;
   activateSection(currentIndex);
 });
+// Modal do vídeo Hoper
+const btnDemoHoper = document.getElementById("btnDemoHoper");
+const modalDemoHoper = document.getElementById("modalDemoHoper");
+const closeModalHoper = document.getElementById("closeModalHoper");
+
+if (btnDemoHoper && modalDemoHoper && closeModalHoper) {
+  btnDemoHoper.addEventListener("click", () => {
+    modalDemoHoper.style.display = "flex";
+  });
+
+  closeModalHoper.addEventListener("click", () => {
+    modalDemoHoper.style.display = "none";
+    const iframe = modalDemoHoper.querySelector("iframe");
+    if (iframe) {
+      // Para o vídeo (reload da src)
+      iframe.src = iframe.src;
+    }
+  });
+
+  modalDemoHoper.addEventListener("click", (e) => {
+    if (e.target === modalDemoHoper) {
+      modalDemoHoper.style.display = "none";
+      const iframe = modalDemoHoper.querySelector("iframe");
+      if (iframe) {
+        iframe.src = iframe.src;
+      }
+    }
+  });
+}
