@@ -12,6 +12,7 @@ const btnDemo = document.getElementById("btnDemo");
 const modalDemo = document.getElementById("modalDemo");
 const closeModal = document.getElementById("closeModal");
 
+
 function isMobile() {
   return window.innerWidth <= 768;
 }
@@ -236,3 +237,22 @@ if (btnDemoHoper && modalDemoHoper && closeModalHoper) {
     }
   });
 }
+
+// Modal Emergência ESP32
+const modalEmergencia = document.getElementById("modalDemoEmergencia");
+const btnDemoEmergencia = document.getElementById("btnDemoEmergencia");
+const closeEmergencia = document.getElementById("closeModalEmergencia");
+
+btnDemoEmergencia.onclick = function () {
+  modalEmergencia.style.display = "block";
+};
+
+closeEmergencia.onclick = function () {
+  modalEmergencia.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target === modalEmergencia) {
+    modalEmergencia.style.display = "none";
+  }
+};
