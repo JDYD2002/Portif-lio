@@ -87,6 +87,20 @@ nav ul li a:focus {
   margin-bottom: 1rem;
 }
 
+
+/* Caixa do vídeo */
+#modalDemoEmergencia .modal-content {
+  position: relative;
+  background: transparent;
+  padding: 0;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    transform: translateY(450px);
+}
+
+
 .home-header::after {
   content: "";
   display: inline-block;
