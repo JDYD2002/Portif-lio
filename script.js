@@ -13,6 +13,7 @@ const modalDemo = document.getElementById("modalDemo");
 const closeModal = document.getElementById("closeModal");
 
 
+
 function isMobile() {
   return window.innerWidth <= 768;
 }
@@ -254,5 +255,26 @@ closeEmergencia.onclick = function () {
 window.onclick = function (event) {
   if (event.target === modalEmergencia) {
     modalEmergencia.style.display = "none";
+  }
+};
+
+const btnNeeko = document.getElementById("btnDemoNeeko");
+const modalNeeko = document.getElementById("modalDemoNeeko");
+const closeNeeko = document.getElementById("closeModalNeeko");
+
+// abrir modal
+btnNeeko.onclick = function () {
+  modalNeeko.style.display = "flex";
+};
+
+// fechar modal
+closeNeeko.onclick = function () {
+  modalNeeko.style.display = "none";
+};
+
+// fechar clicando fora
+window.onclick = function (event) {
+  if (event.target == modalNeeko) {
+    modalNeeko.style.display = "none";
   }
 };
