@@ -88,6 +88,21 @@ navLinks.forEach((link, index) => {
   });
 });
 
+// Eventos de clique nos botões CTA do hero
+const ctaButtons = document.querySelectorAll('.cta-button');
+ctaButtons.forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const targetNav = btn.getAttribute('data-nav');
+    const targetIndex = Array.from(navLinks).findIndex(link => 
+      link.textContent.toLowerCase() === targetNav
+    );
+    if (targetIndex !== -1) {
+      activateSection(targetIndex);
+    }
+  });
+});
+
 // Botão voltar ao topo
 window.addEventListener('scroll', () => {
   if (window.scrollY > 200) {
