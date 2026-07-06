@@ -5,19 +5,24 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* Fonte geral e fundo animado */
 body {
-  font-family: 'Open Sans', sans-serif;
-  background: linear-gradient(-45deg, #1e3c72, #2a5298, #00d4ff, #008dbf, #1e3c72);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', sans-serif;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
   background-size: 400% 400%;
-  animation: backgroundColorShift 20s ease infinite;
-  color: #eee;
+  animation: backgroundColorShift 30s ease infinite;
+  color: #e0e0e0;
   overflow-x: hidden;
   min-height: 100vh;
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased; /* melhora suavidade da fonte */
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: hidden; /* ou auto, se quiser rolagem vertical */
+  overflow-y: hidden;
 }
 
 /* Animação de background */
@@ -38,12 +43,14 @@ nav {
   position: fixed;
   top: 0;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.75); /* leve aumento de opacidade para melhor contraste */
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(10px);
   padding: 1rem 2rem;
   display: flex;
   justify-content: center;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 nav ul {
@@ -55,36 +62,36 @@ nav ul {
 }
 
 nav ul li a {
-  color: #ccc;
+  color: #888;
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s, text-shadow 0.3s;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
 }
 
 nav ul li a.active,
 nav ul li a:hover,
 nav ul li a:focus {
-  color: #00d4ff;
-  text-shadow: 0 0 10px #00d4ff;
-  outline-offset: 2px;
-  outline-color: #00d4ff;
-  outline-style: solid;
-  outline-width: 2px;
-  background-color: rgba(0, 212, 255, 0.1);
-  transition: all 0.3s ease;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  outline: none;
 }
 
 /* Header Home */
 .home-header {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  color: #00d4ff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  white-space: nowrap;
-  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  white-space: normal;
+  overflow: visible;
   margin-bottom: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 
@@ -106,10 +113,10 @@ nav ul li a:focus {
   display: inline-block;
   width: 3px;
   height: 1em;
-  background-color: #ffd700;
+  background-color: #666;
   margin-left: 5px;
   vertical-align: bottom;
-  border-right: 3px solid #ffd700;
+  border-right: 3px solid #666;
   white-space: nowrap;
   overflow: hidden;
   animation: typing 4s steps(30, end), blink 1s step-end infinite;
@@ -136,16 +143,70 @@ nav ul li a:focus {
 
 button:focus,
 a:focus {
-  outline: 2px solid #00d4ff;
-  outline-offset: 4px;
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
 }
 
 .home-paragraph {
-  font-size: 1.2rem;
-  color: #ddd;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: #666;
   margin-bottom: 2rem;
   max-width: 600px;
-  line-height: 1.5;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.home-subtitle {
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  color: #888;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.home-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cta-button {
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.cta-button.primary {
+  background: #fff;
+  color: #0a0a0a;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.cta-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+
+.cta-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Título Sobre Mim */
@@ -213,10 +274,11 @@ a:focus {
 }
 
 .subtitulo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #00bcd4;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
   margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
 
 /* Lista de habilidades e redes */
@@ -271,162 +333,209 @@ a:focus {
 
 .sobre-container img:hover,
 .sobre-container img:focus {
-  transform: scale(1.05);
+  transform: scale(1.08);
   outline: none;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 
 
 /* Título Projetos */
 .projetos-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.2rem;
-  color: #00d4ff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  margin-bottom: 1rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
   text-align: center;
-  margin-top: -40px; /* Sobe o elemento 20px */
+  margin-top: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Container de projetos em grid responsivo */
 .projetos-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); 
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 1.5rem;
   justify-items: center;
-  padding: 0 1rem;
-  margin-top: 70px; /* Sobe o elemento 20px */
+  padding: 0 2rem;
+  margin: 2rem auto 0 auto;
+  max-width: 1400px;
+  box-sizing: border-box;
 }
 
 /* Cards de projetos */
 .projeto-card {
-  background: rgba(0, 51, 102, 0.8); /* Azul escuro semi-transparente */
-  border-radius: 10px;
-  padding: 1.5rem;
-  width: 300px;
-  box-shadow: 0 0 15px #003366cc; /* Sombra azul escuro */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.75rem;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
   cursor: default;
   position: relative;
-  color: #ddd;
+  color: #e0e0e0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .projeto-card:hover,
 .projeto-card:focus-within {
-  transform: translateY(-10px);
-  box-shadow: 0 0 40px 5px #3399ffcc; /* sombra maior e mais brilhante azul claro */
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
   outline: none;
 }
 
+.projeto-card .github-link {
+  position: relative;
+}
+
+.projeto-card .github-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: width 0.2s ease;
+}
+
+.projeto-card .github-link:hover::after {
+  width: 100%;
+}
+
 .projeto-card h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.4rem;
-  color: #66b2ff; /* Azul claro */
-  margin-bottom: 0.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .projeto-card p {
-  font-size: 1rem;
- color: #a3cfff; /* Azul mais suave para o texto */
+  font-size: 0.95rem;
+  color: #888;
   flex-grow: 1;
   margin-bottom: 1rem;
-  line-height: 1.4;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .projeto-card .tech {
-  font-size: 0.9rem;
-
-  font-style: italic;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: normal;
   margin-bottom: 1rem;
+  font-weight: 500;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .projeto-card .github-link {
   align-self: flex-start;
-  color: #00d4ff;
+  color: #888;
   font-size: 0.9rem;
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 
 .projeto-card .github-link:hover,
 .projeto-card .github-link:focus {
-  text-decoration: underline;
-  color: #00aaff;
+  color: #fff;
+  text-decoration: none;
   outline: none;
 }
 
 
 /* Formulário de contato */
 .contato-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.2rem;
-  color: #ffd700;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  margin-bottom: 1rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
   text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .contato-form {
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto 3rem auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 input,
 textarea {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.95rem;
   resize: vertical;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #222;
-  color: #eee;
-  box-shadow: inset 0 0 5px rgba(0, 212, 255, 0.3);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  transition: all 0.2s ease;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #999;
+  color: #666;
 }
 
 input:focus,
 textarea:focus {
-  outline: 2px solid #00d4ff;
-  background-color: #111;
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
 /* Botão submit estilizado */
 button[type="submit"],
 .botao-chamativo {
-  background: linear-gradient(270deg, #00d4ff, #008dbf, #00f2fe);
-  background-size: 600% 600%;
-  animation: gradienteAnim 10s ease infinite;
-  color: #111;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 700;
+  background: #fff;
+  color: #0a0a0a;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 600;
   text-decoration: none;
   border: none;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
+  transition: all 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   align-self: flex-start;
   user-select: none;
+  font-size: 0.9rem;
 }
 
 button[type="submit"]:hover,
 .botao-chamativo:hover {
-  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.8);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 /* Animação do gradiente do botão */
@@ -447,18 +556,18 @@ button[type="submit"]:hover,
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: #00d4ff;
-  color: #111;
+  background: #fff;
+  color: #0a0a0a;
   border: none;
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
-  box-shadow: 0 0 15px #00d4ffcc;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
   z-index: 9999;
 }
 
@@ -467,11 +576,16 @@ button[type="submit"]:hover,
   pointer-events: auto;
 }
 
+#btnTopo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
 /* Scroll reveal (fade up) para seções */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .reveal.active {
@@ -500,6 +614,7 @@ button[type="submit"]:hover,
   transition: opacity 0.7s ease, transform 0.7s ease;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 .section.active { opacity: 1; transform: scale(1); }
 
@@ -508,8 +623,10 @@ button[type="submit"]:hover,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center; /* <- isso aqui centraliza o texto */
+  text-align: center;
   color: #ffd700;
+  padding: 3rem 2rem;
+  box-sizing: border-box;
 }
 #sobre,
 .sobre-container,
@@ -518,7 +635,8 @@ button[type="submit"]:hover,
   background: transparent !important;
     flex: 1;
   text-align: left;
-  padding-left: 80px;  /* aumenta esse valor para afastar mais */
+  padding-left: 0;
+  box-sizing: border-box;
 }
 
 /* Container pai que centraliza o card na tela */
@@ -526,64 +644,89 @@ button[type="submit"]:hover,
   background: none;
   padding: 0;
   height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .botao-chamativo {
-  margin-top: 20px;
+  margin-top: 1.25rem;
+  box-sizing: border-box;
 }
 .portfolio-card {
   padding-bottom: 20px;
-  max-width: 1940px;
-  width: 100vw;
-  padding: 60px 80px;
-  background: linear-gradient(270deg, #0a1a2a, #002244, #0a1a2a);
-  background-size: 600% 600%;
-  animation: gradientAnim 15s ease infinite;
-  color: white;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
-  display: flex;            /* Flexbox para alinhar lado a lado */
-  flex-direction: row;      /* Linha (horizontal) */
-  justify-content: flex-start; /* Alinha ao começo para foto à esquerda */
-  align-items: center;      /* Centraliza verticalmente */
-  margin:  auto;
-  gap: 40px;                /* Espaço entre foto e texto */
+  max-width: 1200px;
+  width: 100%;
+  padding: 3rem 4rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: default;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 2rem auto;
+  gap: 3rem;
+  box-sizing: border-box;
 }
   
 
 .portfolio-card:hover {
-  box-shadow: 0 0 60px #5599ff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.portfolio-card img {
+  transition: transform 0.3s ease;
+}
+
+.portfolio-card:hover img {
   transform: scale(1.05);
 }
 
 .portfolio-card h2 {
-  margin-bottom: 12px;
-  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .portfolio-card p {
-  font-size: 1.1rem;
-  line-height: 1.4;
-  margin-bottom: 18px;
-  flex-grow: 1; /* para texto ocupar espaço e manter altura fixa */
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: #888;
+  flex-grow: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .portfolio-card .botao-chamativo {
   align-self: flex-start;
-  font-size: 1.1rem;
-  padding: 10px 24px;
-  background-color: #3366cc;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #fff;
   border: none;
-  border-radius: 12px;
-  color: white;
+  border-radius: 6px;
+  color: #0a0a0a;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease;
+  font-weight: 600;
 }
 
 .portfolio-card .botao-chamativo:hover {
-  background-color: #5588ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes gradientAnim {
@@ -612,57 +755,59 @@ button[type="submit"]:hover,
 
 /* Foto ocupa 40% */
 .portfolio-card img {
-  width: 40%;
-  height: 100%;
+  width: 280px;
+  height: 280px;
   object-fit: cover;
   user-select: none;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Texto ocupa 60% com padding */
 .portfolio-card .sobre-texto {
-  width: 60%;
-  padding: 3rem 3rem 3rem 4rem;
+  flex: 1;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   overflow-y: auto;
 }
 
 /* Títulos e textos */
 .portfolio-card h2 {
-  font-size: 2.8rem;
-  color: #ffd700;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
 }
 
 .portfolio-card p {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  color: #e0f7ff;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #888;
 }
 
 /* Botão */
 .portfolio-card .botao-chamativo {
   width: max-content;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  border-radius: 30px;
-  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  background: #0066cc;
+  background: #fff;
   border: none;
-  color: white;
-  box-shadow: 0 5px 15px rgba(0, 102, 204, 0.6);
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  color: #0a0a0a;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
   align-self: flex-start;
 }
 
 .portfolio-card .botao-chamativo:hover,
 .portfolio-card .botao-chamativo:focus {
-  box-shadow: 0 8px 25px rgba(0, 102, 204, 0.9);
-  background: #004a99;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
   outline: none;
 }
 .container-principal {
@@ -679,9 +824,46 @@ button[type="submit"]:hover,
   z-index: 9999;
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.9);
+  backdrop-filter: blur(5px);
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close {
+  cursor: pointer;
+  font-size: 28px;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.close:hover {
+  color: #888;
 }
 
 /* Alerta flutuante no topo */
@@ -719,95 +901,224 @@ button[type="submit"]:hover,
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;   /* tamanho do ícone */
-  height: 50px;
-  background-color: #333; /* cor de fundo inicial */
-  color: #fff; /* cor do ícone */
-  border-radius: 50%; /* deixa redondo */
-  font-size: 24px; /* tamanho do ícone */
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #888;
+  border-radius: 50%;
+  font-size: 20px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Hover / efeito quando passa o mouse */
 .social-links a:hover {
-  transform: translateY(-5px) scale(1.1); /* leve movimento */
-  background-color: #0077b5; /* muda cor de fundo (ajuste por rede) */
-  color: #fff; /* garante que o ícone fique branco */
+  transform: translateY(-3px) scale(1.05);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Ajustando cores específicas por rede */
-.social-links a:nth-child(1):hover { background-color: #0e76a8; } /* LinkedIn */
-.social-links a:nth-child(2):hover { background-color: #E1306C; } /* Instagram */
-.social-links a:nth-child(3):hover { background-color: #25D366; } /* WhatsApp */
-.social-links a:nth-child(4):hover { background-color: #1877F2; } /* Facebook */
+.social-links a:nth-child(1):hover { background-color: rgba(14, 118, 168, 0.2); border-color: #0e76a8; }
+.social-links a:nth-child(2):hover { background-color: rgba(225, 48, 108, 0.2); border-color: #E1306C; }
+.social-links a:nth-child(3):hover { background-color: rgba(37, 211, 102, 0.2); border-color: #25D366; }
+.social-links a:nth-child(4):hover { background-color: rgba(24, 119, 242, 0.2); border-color: #1877F2; }
 
-/* Media Queries para celulares (até 600px) */
-/* Mobile - telas até 768px */
-@media (max-width: 768px) {
-  /* Primeiro parágrafo*/
+/* Extra small mobile (320px - 374px) */
+@media (max-width: 374px) {
+  .home-header {
+    font-size: 1.75rem;
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  .home-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
   .home-paragraph {
-  margin-top: 0; /* tira espaço extra em cima */
-  padding-top: 0; /* remove padding */
-  line-height: 1.4; /* melhora espaçamento entre linhas */
-  font-size: 1.2rem; /* tamanho legível */
-  margin-left: 15px;
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  nav ul {
+    gap: 0.5rem;
+  }
+
+  nav ul li a {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .projetos-container {
+    padding: 0 0.75rem;
+  }
+
+  .projeto-card {
+    padding: 1.25rem;
+  }
+
+  .portfolio-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .portfolio-card img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .contato-form {
+    padding: 0 0.75rem;
+  }
 }
-/* eu sou felipe*/
-    .home-header {
-    margin-top: -1200px; /* menos margem no topo pra subir */
+
+/* Small mobile (375px - 480px) */
+@media (min-width: 375px) and (max-width: 480px) {
+  .home-header {
+    font-size: 2rem;
+  }
+
+  .home-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .projetos-container {
+    padding: 0 1rem;
+  }
+}
+
+/* Mobile (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .home-header {
+    font-size: 2.25rem;
+  }
+
+  .home-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .projetos-container {
+    padding: 0 1.25rem;
+  }
+
+  .portfolio-card img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Mobile geral (até 768px) */
+@media (max-width: 768px) {
+  /* Hero section */
+  .home-paragraph {
+    margin-top: 0;
     padding-top: 0;
-    font-size: 1.5rem; /* ajustar tamanho para ficar bom no mobile */
-    margin-left: 20px;
+    line-height: 1.5;
+    font-size: 1rem;
+    margin-left: 0;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .home-header {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 2rem;
+    margin-left: 0;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  .home-subtitle {
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+
+  .home-cta {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
   }
 
   #home {
-    padding-top: 10px; /* ajustar o espaçamento do container no topo */
+    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+
   nav {
-    padding: 1rem 0;
-    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  nav ul {
+    gap: 0.75rem;
+  }
+
+  nav ul li a {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
   }
 
   body {
-    overflow-y: auto; /* scroll vertical liberado só no mobile */
-    overflow-x: hidden; /* evitar scroll horizontal */
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .container-principal {
-    
     display: flex;
-    flex-direction: column; /* empilha vertical */
-    height: auto;           /* altura automática */
-    overflow-y: auto;       /* libera scroll vertical */
-    padding-bottom: 1rem;   /* evita espaçamento embaixo */
-        overflow: hidden; /* Evita scroll extra */
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    overflow: hidden;
   }
 
   .sections-wrapper {
     width: 100% !important;
     height: auto !important;
-    margin-top: calc(60px + 2rem);
+    margin-top: 60px;
     overflow-x: hidden !important;
     overflow-y: visible !important;
-    transform: none !important;  /* remove transform do slide horizontal */
+    transform: none !important;
     scroll-snap-type: none !important;
-        overflow: hidden; /* Evita scroll extra */
+    overflow: hidden;
   }
 
   .section {
     width: 100% !important;
     height: auto !important;
-    padding: 1.5rem 1rem;      /* padding reduzido para menos espaçamento */
+    padding: 2rem 1rem;
     scroll-snap-align: none !important;
     float: none !important;
     position: static !important;
-    margin-bottom: 1.2rem;     /* margem menor para reduzir espaçamento */
-   min-height: 100px; /* Garante um espaço mínimo */
-   overflow: visible; /* Evita corte invisível */
-}
-  
-  /* Remove margem no último elemento para evitar espaço extra */
+    margin-bottom: 0;
+    min-height: auto;
+    overflow: visible;
+  }
+
   .section:last-child {
     margin-bottom: 0;
   }
@@ -815,72 +1126,181 @@ button[type="submit"]:hover,
   /* Sobre e portfolio cards em coluna */
   .sobre-section,
   .portfolio-card {
-    margin-top: -1px;
+    margin-top: 0;
     flex-direction: column;
-    padding: 1.5rem;
+    padding: 2rem 1.25rem;
     gap: 1.5rem;
-      width: auto;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    margin-left: -50px; /* Ajuste conforme necessário */
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
   }
+
   .projetos-title {
-  font-size: 2rem; /* ou o tamanho que desejar */
-  text-align: center;
-  margin: 1rem 0;
-  padding: 0 1rem; /* espaçamento lateral para não encostar nas bordas */
-  white-space: nowrap; /* evita quebra de linha */
-  overflow: visible; /* evita corte */
-  margin-top: -30px;
-  margin-left: -30px;
-}
+    font-size: 1.75rem;
+    text-align: center;
+    margin: 1.5rem 0 1rem 0;
+    padding: 0 1rem;
+    white-space: normal;
+    overflow: visible;
+    margin-top: 0;
+    margin-left: 0;
+    line-height: 1.2;
+  }
 
   .sobre-container {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
-  .sobre-container img {
-    width: 200px;
-    height: 200px;
+  .portfolio-card img {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+  }
+
+  .portfolio-card .sobre-texto {
+    text-align: center;
+    padding: 0;
+  }
+
+  .portfolio-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .portfolio-card p {
+    font-size: 0.95rem;
   }
 
   /* Projetos: 1 coluna */
   .projetos-container {
-     margin-top: -10px; /* Ajuste conforme necessário */
+    margin-top: 1rem;
     grid-template-columns: 1fr;
     padding: 0 1rem;
+    gap: 1rem;
   }
 
   .projeto-card {
-margin-left: -20px;
+    margin-left: 0;
     width: 100%;
     max-width: 100%;
-     margin-top: 10px; /* Ajuste conforme necessário */
+    margin-top: 0;
+    padding: 1.5rem;
+  }
+
+  .projeto-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .projeto-card p {
+    font-size: 0.9rem;
   }
 
   /* Contato e formulário centralizados */
   .contato-form {
-    width: 90%;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto 2rem;
+    padding: 0 1rem;
+    gap: 1rem;
   }
 
-  /* Portfolio-card: imagem e texto empilhados */
-  .portfolio-card img {
-    width: 100%;
-    height: auto;
+  .contato-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
   }
 
-  .portfolio-card .sobre-texto {
-    width: 100%;
-    padding: 1rem;
+  input,
+  textarea {
+    font-size: 0.9rem;
+    padding: 0.75rem 0.875rem;
   }
 
-  /* Botão topo mais próximo */
+  /* Social links */
+  .social-links {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .social-links a {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  /* Botão topo */
   #btnTopo {
     bottom: 20px;
     right: 20px;
-     display: none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+/* Tablet (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-header {
+    font-size: 2.75rem;
+  }
+
+  .home-subtitle {
+    font-size: 1rem;
+  }
+
+  .home-paragraph {
+    font-size: 1.05rem;
+  }
+
+  .projetos-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .projeto-card {
+    max-width: 100%;
+  }
+
+  .portfolio-card {
+    padding: 2.5rem 2rem;
+    gap: 2rem;
+    max-width: 100%;
+  }
+
+  .portfolio-card img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .portfolio-card h2 {
+    font-size: 1.75rem;
+  }
+
+  .contato-form {
+    max-width: 400px;
+  }
+
+  nav ul {
+    gap: 1.5rem;
+  }
+}
+
+/* Small desktop (1025px - 1280px) */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .projetos-container {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+  }
+
+  .portfolio-card {
+    max-width: 900px;
+  }
+}
+
+/* Large desktop (1281px+) */
+@media (min-width: 1281px) {
+  .projetos-container {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
