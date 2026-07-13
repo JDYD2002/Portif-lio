@@ -197,24 +197,23 @@ if (btnDemo && modalDemo && closeModal) {
       iframe.src = iframe.dataset.src;
     }
     modalDemo.style.display = "flex";
+    closeModal.focus();
   });
 
-  closeModal.addEventListener("click", () => {
+  const closeDemoModal = () => {
     modalDemo.style.display = "none";
     const iframe = modalDemo.querySelector("iframe");
     if (iframe) {
-      // Para o vídeo do YouTube
       iframe.src = "";
     }
-  });
+    btnDemo.focus();
+  };
+
+  closeModal.addEventListener("click", closeDemoModal);
 
   modalDemo.addEventListener("click", (e) => {
     if (e.target === modalDemo) {
-      modalDemo.style.display = "none";
-      const iframe = modalDemo.querySelector("iframe");
-      if (iframe) {
-        iframe.src = "";
-      }
+      closeDemoModal();
     }
   });
 }
@@ -236,23 +235,23 @@ if (btnDemoHoper && modalDemoHoper && closeModalHoper) {
       iframe.src = iframe.dataset.src;
     }
     modalDemoHoper.style.display = "flex";
+    closeModalHoper.focus();
   });
 
-  closeModalHoper.addEventListener("click", () => {
+  const closeHoperModal = () => {
     modalDemoHoper.style.display = "none";
     const iframe = modalDemoHoper.querySelector("iframe");
     if (iframe) {
       iframe.src = "";
     }
-  });
+    btnDemoHoper.focus();
+  };
+
+  closeModalHoper.addEventListener("click", closeHoperModal);
 
   modalDemoHoper.addEventListener("click", (e) => {
     if (e.target === modalDemoHoper) {
-      modalDemoHoper.style.display = "none";
-      const iframe = modalDemoHoper.querySelector("iframe");
-      if (iframe) {
-        iframe.src = "";
-      }
+      closeHoperModal();
     }
   });
 }
@@ -269,23 +268,23 @@ if (btnDemoEmergencia && modalEmergencia && closeEmergencia) {
       iframe.src = iframe.dataset.src;
     }
     modalEmergencia.style.display = "flex";
+    closeEmergencia.focus();
   };
 
-  closeEmergencia.onclick = function () {
+  const closeEmergenciaModal = () => {
     modalEmergencia.style.display = "none";
     const iframe = modalEmergencia.querySelector("iframe");
     if (iframe) {
       iframe.src = "";
     }
+    btnDemoEmergencia.focus();
   };
+
+  closeEmergencia.onclick = closeEmergenciaModal;
 
   modalEmergencia.onclick = function (event) {
     if (event.target === modalEmergencia) {
-      modalEmergencia.style.display = "none";
-      const iframe = modalEmergencia.querySelector("iframe");
-      if (iframe) {
-        iframe.src = "";
-      }
+      closeEmergenciaModal();
     }
   };
 }
@@ -302,25 +301,45 @@ if (btnNeeko && modalNeeko && closeNeeko) {
       iframe.src = iframe.dataset.src;
     }
     modalNeeko.style.display = "flex";
+    closeNeeko.focus();
   };
 
-  // fechar modal
-  closeNeeko.onclick = function () {
+  const closeNeekoModal = () => {
     modalNeeko.style.display = "none";
     const iframe = modalNeeko.querySelector("iframe");
     if (iframe) {
       iframe.src = "";
     }
+    btnNeeko.focus();
   };
+
+  // fechar modal
+  closeNeeko.onclick = closeNeekoModal;
 
   // fechar clicando fora
   modalNeeko.onclick = function (event) {
     if (event.target === modalNeeko) {
-      modalNeeko.style.display = "none";
-      const iframe = modalNeeko.querySelector("iframe");
-      if (iframe) {
-        iframe.src = "";
-      }
+      closeNeekoModal();
     }
   };
 }
+
+// ESC key support to close any open modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    const openModals = [
+      { modal: modalDemo, close: closeDemoModal },
+      { modal: modalDemoHoper, close: closeHoperModal },
+      { modal: modalEmergencia, close: closeEmergenciaModal },
+      { modal: modalNeeko, close: closeNeekoModal }
+    ];
+    
+    for (const { modal, close } of openModals) {
+      if (modal && modal.style.display === 'flex') {
+        close();
+        e.preventDefault();
+        break;
+      }
+    }
+  }
+});
