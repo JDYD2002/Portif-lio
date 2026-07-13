@@ -3,21 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfólio - Felipe Braga</title>
+  <meta name="description" content="Portfólio de Felipe Braga - Full Stack Developer especializado em React, Node, Python e Inteligência Artificial. Confira meus projetos e entre em contato." />
+  <meta name="keywords" content="Felipe Braga, Full Stack Developer, React, Node, Python, AI, Portfólio, Desenvolvedor" />
+  <meta name="author" content="Felipe Braga" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Portfólio - Felipe Braga" />
+  <meta property="og:description" content="Full Stack Developer | React | Node | Python | AI" />
+  <meta property="og:image" content="https://feebraga.github.io/Portif-lio/fedev.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Portfólio - Felipe Braga" />
+  <meta property="twitter:description" content="Full Stack Developer | React | Node | Python | AI" />
+  
+  <title>Portfólio - Felipe Braga | Full Stack Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
 
 
 
 </head>
 <body>
+  <a href="#main-content" class="skip-link" style="position: absolute; top: -40px; left: 0; background: #000; color: #fff; padding: 8px; z-index: 10001; transition: top 0.3s;">Pular para o conteúdo principal</a>
+  
   <!-- Navegação fixa no topo -->
-  <nav>
+  <nav role="navigation" aria-label="Navegação principal">
     <ul>
-      <li><a href="#" class="nav-link active">Home</a></li>
+      <li><a href="#" class="nav-link active" aria-current="page">Home</a></li>
       <li><a href="#" class="nav-link">Sobre</a></li>
       <li><a href="#" class="nav-link">Projetos</a></li>
       <li><a href="#" class="nav-link">Contato</a></li>
@@ -26,9 +41,9 @@
 
   <button id="btnTopo" title="Voltar ao topo">↑</button>
 
-  <div class="sections-wrapper">
-    <section id="home" class="section active">
-      <h1 class="typing reveal home-header"></h1>
+  <main id="main-content" class="sections-wrapper">
+    <section id="home" class="section active" aria-labelledby="home-title">
+      <h1 id="home-title" class="typing reveal home-header"></h1>
       <p class="reveal home-subtitle">Full Stack Developer | React | Node | Python | AI</p>
       <p class="reveal home-paragraph">Desenvolvedor apaixonado por criar soluções inovadoras com tecnologia</p>
       <div class="reveal home-cta">
@@ -37,11 +52,11 @@
       </div>
     </section>
 
-    <section id="sobre" class="section sobre-section">
+    <section id="sobre" class="section sobre-section" aria-labelledby="sobre-title">
       <div class="portfolio-card" tabindex="0">
-        <img src="fedev.jpg" alt="Foto do Felipe Braga Ribeiro" />
+        <img src="fedev.jpg" alt="Foto de perfil de Felipe Braga Ribeiro" width="250" height="250" />
         <div class="sobre-texto">
-          <h2>Sobre Mim</h2>
+          <h2 id="sobre-title">Sobre Mim</h2>
           <p>
             Olá! Sou <strong>Felipe Braga Ribeiro</strong>, tenho 24 anos e sou de
             <strong>Belém - PA</strong>. Estou cursando
@@ -69,8 +84,8 @@
       </div>
     </section>
 
-<section id="projetos" class="section">
-  <h2 class="titulo-centro projetos-title">Projetos</h2>
+<section id="projetos" class="section" aria-labelledby="projetos-title">
+  <h2 id="projetos-title" class="titulo-centro projetos-title">Projetos</h2>
   <div class="projetos-container">
 
     <div class="projeto-card reveal">
@@ -121,8 +136,8 @@
       <h3>Sistema Devocional</h3>
       <p>Sistema devocional digital criado para ajudar no crescimento espiritual através de anotações organizadas e de fácil acesso.</p>
       <p class="tech">Techs: React, CSS</p>
-      <a href="https://github.com/feebraga/dev" class="github-link" target="_blank">📁 Código</a>
-       <a href=" https://feebraga.github.io/dev/" class="github-link" target="_blank" rel="noopener noreferrer">🌐 Ver Site</a> 
+      <a href="https://github.com/feebraga/dev" class="github-link" target="_blank" rel="noopener noreferrer">📁 Código</a>
+       <a href="https://feebraga.github.io/dev/" class="github-link" target="_blank" rel="noopener noreferrer">🌐 Ver Site</a> 
     </div>
    
 
@@ -130,14 +145,14 @@
       <h3>Agenda de Anotações</h3>
       <p>A Agenda de Anotações é um app leve e prático para organizar ideias, tarefas e lembretes em um só lugar. Feito para quem quer escrever rápido, encontrar fácil e não se perder no meio do dia a dia.</p>
       <p class="tech">Techs: Python</p>
-      <a href="https://github.com/feebraga/Agenda" class="github-link" target="_blank">📁 Código</a>
+      <a href="https://github.com/feebraga/Agenda" class="github-link" target="_blank" rel="noopener noreferrer">📁 Código</a>
     </div>
 
     <div class="projeto-card reveal">
       <h3>Sistema de Emergência ESP32</h3>
       <p>Sistema de alerta inteligente usando ESP32, com buzzer, LED, conexão Wi-Fi e lógica de emergência automatizada.</p>
       <p class="tech">Techs: ESP32, Arduino IDE, IoT, C/C++</p>
-      <a href="https://github.com/feebraga/Arduino-Hoper" class="github-link" target="_blank">📁 Código</a>
+      <a href="https://github.com/feebraga/Arduino-Hoper" class="github-link" target="_blank" rel="noopener noreferrer">📁 Código</a>
       <button id="btnDemoEmergencia" class="botao-chamativo">Ver Demo</button>
     </div>
 
@@ -147,89 +162,79 @@
       Ele se move pela tela, reage a ações do usuário e permite conversas em tempo real usando um LLM 🤖.
         Desenvolvido em Python 🐍 com PyQt 💻, o projeto explora IA, interação humano-computador e sistemas interativos.</p>
       <p class="tech">Techs: Python, LLM, PyQt.</p>
-      <a href="" class="github-link" target="_blank"></a>
+      <a href="https://github.com/feebraga/NeekoIA" class="github-link" target="_blank" rel="noopener noreferrer">📁 Código</a>
       <button id="btnDemoNeeko" class="botao-chamativo">Ver Demo</button>
-    </div>
-
-  <div class="projeto-card reveal">
-      <h3>Loading...</h3>
-      <p>.</p>
-      <p class="tech">.</p>
-      <a href="" class="github-link" target="_blank"></a>
-      <button id="" class="botao-chamativo"></button>
-    </div>
-    
-      <div class="projeto-card reveal">
-      <h3>Loading...</h3>
-      <p>.</p>
-      <p class="tech">.</p>
-      <a href="" class="github-link" target="_blank"></a>
-      <button id="" class="botao-chamativo"></button>
-    </div>
-
-      <div class="projeto-card reveal">
-      <h3>Loading...</h3>
-      <p>.</p>
-      <p class="tech">.</p>
-      <a href="" class="github-link" target="_blank"></a>
-      <button id="" class="botao-chamativo"></button>
     </div>
 
   </div>
 
 
   <!-- Modal do vídeo -->
-  <div id="modalDemo" class="modal" style="display: none;">
+  <div id="modalDemo" class="modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modalDemo-title">
     <div class="modal-content">
-      <span id="closeModal" class="close" style="cursor:pointer; font-size: 28px;">&times;</span>
+      <button id="closeModal" class="close" aria-label="Fechar modal">&times;</button>
       <iframe
-        width="100%"
-        height="400"
-        src="https://www.youtube.com/embed/zPmGA_pYLjA"
-        title="YouTube video player"
+        data-src="https://www.youtube.com/embed/zPmGA_pYLjA"
+        src=""
+        title="YouTube video player - Jesusinho Virtual"
         frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
+        loading="lazy"
       ></iframe>
     </div>
   </div>
 
   <!-- Modal do vídeo Hoper -->
-<div id="modalDemoHoper" class="modal" style="display: none;">
-  <div class="modal-content">
-    <span id="closeModalHoper" class="close" style="cursor:pointer; font-size: 28px;">&times;</span>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1KTAnAZEpB0?si=Pt2BcNQrTRribV_b" 
-title="YouTube video player" 
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-referrerpolicy="strict-origin-when-cross-origin" 
-allowfullscreen></iframe>
+  <div id="modalDemoHoper" class="modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modalDemoHoper-title">
+    <div class="modal-content">
+      <button id="closeModalHoper" class="close" aria-label="Fechar modal">&times;</button>
+      <iframe
+        data-src="https://www.youtube.com/embed/1KTAnAZEpB0?si=Pt2BcNQrTRribV_b"
+        src=""
+        title="YouTube video player - Hoper Saúde"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
   </div>
-</div>
 
-<!-- Modal do vídeo ESP32 Emergência -->
-<div id="modalDemoEmergencia" class="modal" style="display: none;">
-  <div class="modal-content">
-    <span id="closeModalEmergencia" class="close" style="cursor:pointer; font-size: 28px;">&times;</span>
-<iframe width="560" height="315" 
-src="https://www.youtube.com/embed/FB9KfWXVrjc?si=BzLLKxK-ufw4YYkQ" 
-title="YouTube video player" 
-frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-referrerpolicy="strict-origin-when-cross-origin" 
-allowfullscreen></iframe>
+  <!-- Modal do vídeo ESP32 Emergência -->
+  <div id="modalDemoEmergencia" class="modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modalDemoEmergencia-title">
+    <div class="modal-content">
+      <button id="closeModalEmergencia" class="close" aria-label="Fechar modal">&times;</button>
+      <iframe
+        data-src="https://www.youtube.com/embed/FB9KfWXVrjc?si=BzLLKxK-ufw4YYkQ"
+        src=""
+        title="YouTube video player - Sistema de Emergência ESP32"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
   </div>
-</div>
 
 
     <!-- Modal do vídeo Neeko -->
-    <div id="modalDemoNeeko" class="modal" style="display: none;">
+    <div id="modalDemoNeeko" class="modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modalDemoNeeko-title">
       <div class="modal-content">
-        <span id="closeModalNeeko" class="close" style="cursor:pointer; font-size: 28px;">&times;</span>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/4DP54Vt4b5k?si=GL-ZzVcuWP6QHbD7"
-        title="YouTube video player" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen></iframe>
+        <button id="closeModalNeeko" class="close" aria-label="Fechar modal">&times;</button>
+        <iframe
+          data-src="https://www.youtube.com/embed/4DP54Vt4b5k?si=GL-ZzVcuWP6QHbD7"
+          src=""
+          title="YouTube video player - NeekoIA"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
       </div>
     </div>
 
@@ -237,8 +242,8 @@ allowfullscreen></iframe>
 </section>
 
 
-<section id="contato" class="section">
-  <h2 class="reveal contato-title">Contato</h2>
+<section id="contato" class="section" aria-labelledby="contato-title">
+  <h2 id="contato-title" class="reveal contato-title">Contato</h2>
 
   <form id="form-contato" class="reveal contato-form">
     <label for="nome">Nome:</label>
@@ -258,10 +263,10 @@ allowfullscreen></iframe>
   </div>
 
  <div class="social-links">
-  <a href="https://www.linkedin.com/in/felipebraga233/" target="_blank"><i class="fab fa-linkedin"></i></a>
-  <a href="https://www.instagram.com/febrraga/" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="https://wa.me/551191985784046" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  <a href="https://www.facebook.com/felipe.braga.7798" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.linkedin.com/in/felipebraga233/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/febrraga/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://wa.me/5591985784046" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.facebook.com/felipe.braga.7798" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
 </div>
 </section>
 

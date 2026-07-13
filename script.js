@@ -123,10 +123,6 @@ if (formContato) {
 
     const formData = new FormData(formContato);
 
-    alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
-
-    formContato.reset();
-
     try {
       const resposta = await fetch("https://formsubmit.co/ajax/felipebraga233@gmail.com", {
         method: "POST",
@@ -196,6 +192,10 @@ function scrollReveal() {
 // Modal do vídeo Jesusinho
 if (btnDemo && modalDemo && closeModal) {
   btnDemo.addEventListener("click", () => {
+    const iframe = modalDemo.querySelector("iframe");
+    if (iframe && iframe.dataset.src) {
+      iframe.src = iframe.dataset.src;
+    }
     modalDemo.style.display = "flex";
   });
 
@@ -203,8 +203,8 @@ if (btnDemo && modalDemo && closeModal) {
     modalDemo.style.display = "none";
     const iframe = modalDemo.querySelector("iframe");
     if (iframe) {
-      // Para o vídeo do YouTube (reload da src)
-      iframe.src = iframe.src;
+      // Para o vídeo do YouTube
+      iframe.src = "";
     }
   });
 
@@ -213,7 +213,7 @@ if (btnDemo && modalDemo && closeModal) {
       modalDemo.style.display = "none";
       const iframe = modalDemo.querySelector("iframe");
       if (iframe) {
-        iframe.src = iframe.src;
+        iframe.src = "";
       }
     }
   });
@@ -231,6 +231,10 @@ const closeModalHoper = document.getElementById("closeModalHoper");
 
 if (btnDemoHoper && modalDemoHoper && closeModalHoper) {
   btnDemoHoper.addEventListener("click", () => {
+    const iframe = modalDemoHoper.querySelector("iframe");
+    if (iframe && iframe.dataset.src) {
+      iframe.src = iframe.dataset.src;
+    }
     modalDemoHoper.style.display = "flex";
   });
 
@@ -238,8 +242,7 @@ if (btnDemoHoper && modalDemoHoper && closeModalHoper) {
     modalDemoHoper.style.display = "none";
     const iframe = modalDemoHoper.querySelector("iframe");
     if (iframe) {
-      // Para o vídeo (reload da src)
-      iframe.src = iframe.src;
+      iframe.src = "";
     }
   });
 
@@ -248,7 +251,7 @@ if (btnDemoHoper && modalDemoHoper && closeModalHoper) {
       modalDemoHoper.style.display = "none";
       const iframe = modalDemoHoper.querySelector("iframe");
       if (iframe) {
-        iframe.src = iframe.src;
+        iframe.src = "";
       }
     }
   });
@@ -259,37 +262,65 @@ const modalEmergencia = document.getElementById("modalDemoEmergencia");
 const btnDemoEmergencia = document.getElementById("btnDemoEmergencia");
 const closeEmergencia = document.getElementById("closeModalEmergencia");
 
-btnDemoEmergencia.onclick = function () {
-  modalEmergencia.style.display = "block";
-};
+if (btnDemoEmergencia && modalEmergencia && closeEmergencia) {
+  btnDemoEmergencia.onclick = function () {
+    const iframe = modalEmergencia.querySelector("iframe");
+    if (iframe && iframe.dataset.src) {
+      iframe.src = iframe.dataset.src;
+    }
+    modalEmergencia.style.display = "flex";
+  };
 
-closeEmergencia.onclick = function () {
-  modalEmergencia.style.display = "none";
-};
-
-window.onclick = function (event) {
-  if (event.target === modalEmergencia) {
+  closeEmergencia.onclick = function () {
     modalEmergencia.style.display = "none";
-  }
-};
+    const iframe = modalEmergencia.querySelector("iframe");
+    if (iframe) {
+      iframe.src = "";
+    }
+  };
+
+  modalEmergencia.onclick = function (event) {
+    if (event.target === modalEmergencia) {
+      modalEmergencia.style.display = "none";
+      const iframe = modalEmergencia.querySelector("iframe");
+      if (iframe) {
+        iframe.src = "";
+      }
+    }
+  };
+}
 
 const btnNeeko = document.getElementById("btnDemoNeeko");
 const modalNeeko = document.getElementById("modalDemoNeeko");
 const closeNeeko = document.getElementById("closeModalNeeko");
 
-// abrir modal
-btnNeeko.onclick = function () {
-  modalNeeko.style.display = "flex";
-};
+if (btnNeeko && modalNeeko && closeNeeko) {
+  // abrir modal
+  btnNeeko.onclick = function () {
+    const iframe = modalNeeko.querySelector("iframe");
+    if (iframe && iframe.dataset.src) {
+      iframe.src = iframe.dataset.src;
+    }
+    modalNeeko.style.display = "flex";
+  };
 
-// fechar modal
-closeNeeko.onclick = function () {
-  modalNeeko.style.display = "none";
-};
-
-// fechar clicando fora
-window.onclick = function (event) {
-  if (event.target == modalNeeko) {
+  // fechar modal
+  closeNeeko.onclick = function () {
     modalNeeko.style.display = "none";
-  }
-};
+    const iframe = modalNeeko.querySelector("iframe");
+    if (iframe) {
+      iframe.src = "";
+    }
+  };
+
+  // fechar clicando fora
+  modalNeeko.onclick = function (event) {
+    if (event.target === modalNeeko) {
+      modalNeeko.style.display = "none";
+      const iframe = modalNeeko.querySelector("iframe");
+      if (iframe) {
+        iframe.src = "";
+      }
+    }
+  };
+}

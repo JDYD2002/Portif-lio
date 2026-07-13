@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+/* Skip link for accessibility */
+.skip-link:focus {
+  top: 0 !important;
+}
+
 html, body {
   overflow-x: hidden;
   max-width: 100%;
@@ -95,17 +100,6 @@ nav ul li a:focus {
 }
 
 
-/* Caixa do vídeo */
-#modalDemoEmergencia .modal-content {
-  position: relative;
-  background: transparent;
-  padding: 0;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-    transform: translateY(450px);
-}
 
 
 .home-header::after {
@@ -249,11 +243,11 @@ a:focus {
 }
 
 .sobre-container img {
-  width: 280px;
-  height: 280px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   object-fit: cover;
-  border: 6px solid #00bcd4;
+  border: 5px solid #00bcd4;
   box-shadow: 0 12px 28px rgba(0, 188, 212, 0.35);
   flex-shrink: 0;
   transition: transform 0.3s ease;
@@ -262,8 +256,9 @@ a:focus {
 
 .sobre-container img:hover,
 .sobre-container img:focus {
-  transform: scale(1.07);
+  transform: scale(1.08);
   outline: none;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .sobre-texto p {
@@ -318,25 +313,6 @@ a:focus {
   text-decoration: underline;
 }
 
-/* Estilo da imagem da seção Sobre */
-.sobre-container img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
-  border: 5px solid #00bcd4;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-  align-self: center;
-}
-
-.sobre-container img:hover,
-.sobre-container img:focus {
-  transform: scale(1.08);
-  outline: none;
-  border-color: rgba(255, 255, 255, 0.2);
-}
 
 
 
@@ -538,18 +514,6 @@ button[type="submit"]:hover,
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
-/* Animação do gradiente do botão */
-@keyframes gradienteAnim {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 /* Botão voltar ao topo */
 #btnTopo {
@@ -729,17 +693,6 @@ button[type="submit"]:hover,
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
-@keyframes gradientAnim {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 
 /* Efeito "acender" no hover */
@@ -842,6 +795,19 @@ button[type="submit"]:hover,
 
 .modal-content {
   animation: scaleIn 0.3s ease;
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+}
+
+.modal-content iframe {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes scaleIn {
@@ -860,6 +826,14 @@ button[type="submit"]:hover,
   font-size: 28px;
   color: #fff;
   transition: color 0.2s ease;
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+  z-index: 10;
 }
 
 .close:hover {
@@ -1302,5 +1276,37 @@ button[type="submit"]:hover,
 @media (min-width: 1281px) {
   .projetos-container {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Video modal responsive adjustments */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  
+  .modal-content iframe {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  
+  .close {
+    top: -35px;
+    right: 10px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content iframe {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  
+  .close {
+    top: -30px;
+    right: 5px;
+    font-size: 22px;
   }
 }
