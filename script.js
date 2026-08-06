@@ -8,11 +8,6 @@ const btnTopo = document.getElementById('btnTopo');
 const typingElement = document.querySelector('.home-header');
 const formContato = document.getElementById('form-contato');
 const alertaSucesso = document.getElementById('alertaSucesso');
-const btnDemo = document.getElementById("btnDemo");
-const modalDemo = document.getElementById("modalDemo");
-const closeModal = document.getElementById("closeModal");
-
-
 
 function isMobile() {
   return window.innerWidth <= 768;
@@ -70,7 +65,16 @@ function activateSection(index) {
   } else {
     // Mobile: scroll vertical
     sectionsWrapper.style.transform = '';
-    sections[index].scrollIntoView({ behavior: 'smooth' });
+    const targetSection = sections[index];
+    if (targetSection) {
+      const navHeight = document.querySelector('nav').offsetHeight;
+      const sectionTop = targetSection.offsetTop - navHeight - 10;
+      
+      window.scrollTo({
+        top: sectionTop,
+        behavior: 'smooth'
+      });
+    }
   }
 
   localStorage.setItem('activeSectionIndex', index);
@@ -85,6 +89,10 @@ navLinks.forEach((link, index) => {
   link.addEventListener('click', e => {
     e.preventDefault();
     activateSection(index);
+    // PostHog: Track navigation click (após navegação funcionar)
+    if (typeof trackNavigationClick === 'function') {
+      trackNavigationClick(link.textContent.toLowerCase());
+    }
   });
 });
 
@@ -99,6 +107,10 @@ ctaButtons.forEach(btn => {
     );
     if (targetIndex !== -1) {
       activateSection(targetIndex);
+    }
+    // PostHog: Track contact/navigation CTA click (após navegação funcionar)
+    if (typeof trackContactClick === 'function') {
+      trackContactClick('cta_' + btn.getAttribute('data-nav'));
     }
   });
 });
@@ -120,14 +132,27 @@ btnTopo.addEventListener('click', () => {
 if (formContato) {
   formContato.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    // PostHog: Track form submission
+    if (typeof trackContactClick === 'function') {
+      trackContactClick('form_submit');
+    }
 
     const formData = new FormData(formContato);
+    const submitButton = formContato.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton ? submitButton.textContent : 'Enviar';
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando...';
+    }
 
     try {
       const resposta = await fetch("https://formsubmit.co/ajax/felipebraga233@gmail.com", {
         method: "POST",
         body: formData,
       });
+      
       if (resposta.ok) {
         formContato.reset();
         alertaSucesso.style.display = 'block';
@@ -137,6 +162,11 @@ if (formContato) {
       }
     } catch (error) {
       alert("Erro ao enviar a mensagem. Verifique sua conexão.");
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
     }
   });
 }
@@ -174,6 +204,10 @@ window.addEventListener('load', () => {
   const index = savedIndex !== null ? parseInt(savedIndex, 10) : 0;
   activateSection(index);
   scrollReveal();
+  
+  // PostHog: Setup tracking for project links and social links
+  setupProjectTracking();
+  setupSocialTracking();
 });
 
 window.addEventListener('beforeunload', () => {
@@ -189,157 +223,151 @@ function scrollReveal() {
   });
 }
 
-// Modal do vídeo Jesusinho
-if (btnDemo && modalDemo && closeModal) {
-  btnDemo.addEventListener("click", () => {
-    const iframe = modalDemo.querySelector("iframe");
+// Função reutilizável para configurar modais de vídeo
+function setupVideoModal(btnId, modalId, closeBtnId) {
+  const btn = document.getElementById(btnId);
+  const modal = document.getElementById(modalId);
+  const closeBtn = document.getElementById(closeBtnId);
+
+  if (!btn || !modal || !closeBtn) return;
+
+  const openModal = () => {
+    const iframe = modal.querySelector("iframe");
     if (iframe && iframe.dataset.src) {
       iframe.src = iframe.dataset.src;
     }
-    modalDemo.style.display = "flex";
-    closeModal.focus();
-  });
-
-  const closeDemoModal = () => {
-    modalDemo.style.display = "none";
-    const iframe = modalDemo.querySelector("iframe");
-    if (iframe) {
-      iframe.src = "";
-    }
-    btnDemo.focus();
+    modal.style.display = "flex";
+    modal.style.animation = "fadeIn 0.3s ease";
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden"; // Bloqueia scroll do body
+    closeBtn.focus();
   };
 
-  closeModal.addEventListener("click", closeDemoModal);
+  const closeModal = () => {
+    modal.style.animation = "fadeOut 0.2s ease";
+    setTimeout(() => {
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
+      const iframe = modal.querySelector("iframe");
+      if (iframe) {
+        iframe.src = "";
+      }
+      document.body.style.overflow = ""; // Restaura scroll do body
+      btn.focus();
+    }, 200);
+  };
 
-  modalDemo.addEventListener("click", (e) => {
-    if (e.target === modalDemo) {
-      closeDemoModal();
+  btn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+
+  // Fechar ao clicar fora do modal
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Fechar com tecla ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "flex") {
+      closeModal();
     }
   });
 }
+
+// Configurar todos os modais de vídeo
+setupVideoModal("btnDemo", "modalDemo", "closeModal");
+setupVideoModal("btnDemoHoper", "modalDemoHoper", "closeModalHoper");
+setupVideoModal("btnDemoEmergencia", "modalDemoEmergencia", "closeModalEmergencia");
+setupVideoModal("btnDemoNeeko", "modalDemoNeeko", "closeModalNeeko");
 
 // Reativa seção ao redimensionar (responsividade)
 window.addEventListener('resize', () => {
   const currentIndex = parseInt(localStorage.getItem('activeSectionIndex'), 10) || 0;
   activateSection(currentIndex);
 });
-// Modal do vídeo Hoper
-const btnDemoHoper = document.getElementById("btnDemoHoper");
-const modalDemoHoper = document.getElementById("modalDemoHoper");
-const closeModalHoper = document.getElementById("closeModalHoper");
 
-if (btnDemoHoper && modalDemoHoper && closeModalHoper) {
-  btnDemoHoper.addEventListener("click", () => {
-    const iframe = modalDemoHoper.querySelector("iframe");
-    if (iframe && iframe.dataset.src) {
-      iframe.src = iframe.dataset.src;
-    }
-    modalDemoHoper.style.display = "flex";
-    closeModalHoper.focus();
-  });
+// ============================================
+// POSTHOG TRACKING FUNCTIONS
+// ============================================
 
-  const closeHoperModal = () => {
-    modalDemoHoper.style.display = "none";
-    const iframe = modalDemoHoper.querySelector("iframe");
-    if (iframe) {
-      iframe.src = "";
-    }
-    btnDemoHoper.focus();
-  };
-
-  closeModalHoper.addEventListener("click", closeHoperModal);
-
-  modalDemoHoper.addEventListener("click", (e) => {
-    if (e.target === modalDemoHoper) {
-      closeHoperModal();
-    }
-  });
-}
-
-// Modal Emergência ESP32
-const modalEmergencia = document.getElementById("modalDemoEmergencia");
-const btnDemoEmergencia = document.getElementById("btnDemoEmergencia");
-const closeEmergencia = document.getElementById("closeModalEmergencia");
-
-if (btnDemoEmergencia && modalEmergencia && closeEmergencia) {
-  btnDemoEmergencia.onclick = function () {
-    const iframe = modalEmergencia.querySelector("iframe");
-    if (iframe && iframe.dataset.src) {
-      iframe.src = iframe.dataset.src;
-    }
-    modalEmergencia.style.display = "flex";
-    closeEmergencia.focus();
-  };
-
-  const closeEmergenciaModal = () => {
-    modalEmergencia.style.display = "none";
-    const iframe = modalEmergencia.querySelector("iframe");
-    if (iframe) {
-      iframe.src = "";
-    }
-    btnDemoEmergencia.focus();
-  };
-
-  closeEmergencia.onclick = closeEmergenciaModal;
-
-  modalEmergencia.onclick = function (event) {
-    if (event.target === modalEmergencia) {
-      closeEmergenciaModal();
-    }
-  };
-}
-
-const btnNeeko = document.getElementById("btnDemoNeeko");
-const modalNeeko = document.getElementById("modalDemoNeeko");
-const closeNeeko = document.getElementById("closeModalNeeko");
-
-if (btnNeeko && modalNeeko && closeNeeko) {
-  // abrir modal
-  btnNeeko.onclick = function () {
-    const iframe = modalNeeko.querySelector("iframe");
-    if (iframe && iframe.dataset.src) {
-      iframe.src = iframe.dataset.src;
-    }
-    modalNeeko.style.display = "flex";
-    closeNeeko.focus();
-  };
-
-  const closeNeekoModal = () => {
-    modalNeeko.style.display = "none";
-    const iframe = modalNeeko.querySelector("iframe");
-    if (iframe) {
-      iframe.src = "";
-    }
-    btnNeeko.focus();
-  };
-
-  // fechar modal
-  closeNeeko.onclick = closeNeekoModal;
-
-  // fechar clicando fora
-  modalNeeko.onclick = function (event) {
-    if (event.target === modalNeeko) {
-      closeNeekoModal();
-    }
-  };
-}
-
-// ESC key support to close any open modal
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' || e.key === 'Esc') {
-    const openModals = [
-      { modal: modalDemo, close: closeDemoModal },
-      { modal: modalDemoHoper, close: closeHoperModal },
-      { modal: modalEmergencia, close: closeEmergenciaModal },
-      { modal: modalNeeko, close: closeNeekoModal }
-    ];
-    
-    for (const { modal, close } of openModals) {
-      if (modal && modal.style.display === 'flex') {
-        close();
-        e.preventDefault();
-        break;
-      }
-    }
+/**
+ * Setup tracking for all project links
+ * Tracks clicks on GitHub links, frontend/backend links, and demo buttons
+ */
+function setupProjectTracking() {
+  if (typeof trackProjectClick !== 'function' || typeof trackGitHubClick !== 'function') {
+    return;
   }
-});
+
+  // Track all github-link class elements (project links)
+  const projectLinks = document.querySelectorAll('.github-link');
+  projectLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const projectCard = link.closest('.projeto-card');
+      const projectName = projectCard ? projectCard.querySelector('h3').textContent : 'unknown';
+      
+      // Determine link type based on the link text or URL
+      let linkType = 'unknown';
+      const linkText = link.textContent.trim();
+      const href = link.getAttribute('href');
+      
+      if (linkText.includes('Código') || href.includes('github.com')) {
+        linkType = 'codigo';
+        trackGitHubClick(projectName);
+      } else if (linkText.includes('Frontend') || linkText.includes('🌐')) {
+        linkType = 'frontend';
+      } else if (linkText.includes('Backend') || linkText.includes('🧠')) {
+        linkType = 'backend';
+      } else if (linkText.includes('Site') || linkText.includes('Ver Site')) {
+        linkType = 'site';
+      }
+      
+      trackProjectClick(projectName, linkType);
+    });
+  });
+
+  // Track demo buttons
+  const demoButtons = document.querySelectorAll('.botao-chamativo');
+  demoButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const projectCard = btn.closest('.projeto-card');
+      const projectName = projectCard ? projectCard.querySelector('h3').textContent : 'unknown';
+      trackProjectClick(projectName, 'demo');
+    });
+  });
+}
+
+/**
+ * Setup tracking for social media links
+ * Tracks clicks on LinkedIn, Instagram, WhatsApp, and Facebook
+ */
+function setupSocialTracking() {
+  if (typeof trackLinkedInClick !== 'function' || typeof trackContactClick !== 'function') {
+    return;
+  }
+
+  const socialLinks = document.querySelectorAll('.social-links a');
+  socialLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const ariaLabel = link.getAttribute('aria-label');
+      
+      if (ariaLabel === 'LinkedIn') {
+        trackLinkedInClick();
+      } else {
+        // Track other social links as contact clicks
+        trackContactClick('social_' + ariaLabel.toLowerCase());
+      }
+    });
+  });
+
+  // Track CV download link
+  const cvLink = document.querySelector('a[download]');
+  if (cvLink) {
+    cvLink.addEventListener('click', (e) => {
+      if (typeof trackCVDownload === 'function') {
+        trackCVDownload();
+      }
+    });
+  }
+}

@@ -10,9 +10,24 @@
   top: 0 !important;
 }
 
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html, body {
   overflow-x: hidden;
   max-width: 100%;
+  scroll-padding-top: 80px;
+  scroll-behavior: smooth;
 }
 
 /* Fonte geral e fundo animado */
@@ -21,7 +36,7 @@ body {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
   background-size: 400% 400%;
   animation: backgroundColorShift 30s ease infinite;
-  color: #e0e0e0;
+  color: #f0f0f0;
   overflow-x: hidden;
   min-height: 100vh;
   scroll-behavior: smooth;
@@ -67,7 +82,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: #888;
+  color: #999;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
@@ -94,7 +109,7 @@ nav ul li a:focus {
   letter-spacing: -0.02em;
   white-space: normal;
   overflow: visible;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -143,8 +158,8 @@ a:focus {
 
 .home-paragraph {
   font-size: clamp(0.95rem, 2vw, 1.1rem);
-  color: #666;
-  margin-bottom: 2rem;
+  color: #999;
+  margin-bottom: 1.5rem;
   max-width: 600px;
   line-height: 1.6;
   word-wrap: break-word;
@@ -153,11 +168,11 @@ a:focus {
 
 .home-subtitle {
   font-size: clamp(0.85rem, 2vw, 1.1rem);
-  color: #888;
-  margin-bottom: 1rem;
+  color: #aaa;
+  margin-bottom: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  opacity: 0.8;
+  opacity: 0.9;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -165,7 +180,7 @@ a:focus {
 .home-cta {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .cta-button {
@@ -218,14 +233,14 @@ a:focus {
   max-width: 900px;
   background-color: #fff;
   border-radius: 25px;
-  padding: 3rem;
-  margin: 3rem auto;
+  padding: 2.5rem;
+  margin: 2rem auto;
   box-shadow: 0 15px 35px rgba(0, 188, 212, 0.3);
   color: #222;
   transition: all 0.4s ease;
   display: flex;
   flex-direction: row;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: center;
 }
 
@@ -323,7 +338,7 @@ a:focus {
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.02em;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   margin-top: 0;
   word-wrap: break-word;
@@ -333,28 +348,28 @@ a:focus {
 /* Container de projetos em grid responsivo */
 .projetos-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
   gap: 1.5rem;
   justify-items: center;
   padding: 0 2rem;
-  margin: 2rem auto 0 auto;
+  margin: 1.5rem auto 0 auto;
   max-width: 1400px;
   box-sizing: border-box;
 }
 
 /* Cards de projetos */
 .projeto-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 1.75rem;
   width: 100%;
   max-width: 380px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   cursor: default;
   position: relative;
-  color: #e0e0e0;
+  color: #e8e8e8;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -365,9 +380,9 @@ a:focus {
 .projeto-card:hover,
 .projeto-card:focus-within {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.06);
   outline: none;
 }
 
@@ -403,7 +418,7 @@ a:focus {
 
 .projeto-card p {
   font-size: 0.95rem;
-  color: #888;
+  color: #b8b8b8;
   flex-grow: 1;
   margin-bottom: 1rem;
   line-height: 1.6;
@@ -413,7 +428,7 @@ a:focus {
 
 .projeto-card .tech {
   font-size: 0.85rem;
-  color: #666;
+  color: #999;
   font-style: normal;
   margin-bottom: 1rem;
   font-weight: 500;
@@ -447,7 +462,7 @@ a:focus {
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.02em;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -455,10 +470,10 @@ a:focus {
 
 .contato-form {
   max-width: 450px;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 2rem auto;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
   padding: 0 1rem;
   box-sizing: border-box;
 }
@@ -466,26 +481,26 @@ a:focus {
 input,
 textarea {
   padding: 0.875rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   font-size: 0.95rem;
   resize: vertical;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #e0e0e0;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #f0f0f0;
   transition: all 0.2s ease;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #666;
+  color: #777;
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.3);
-  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 
@@ -511,7 +526,7 @@ button[type="submit"],
 button[type="submit"]:hover,
 .botao-chamativo:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
 }
 
 
@@ -580,7 +595,28 @@ button[type="submit"]:hover,
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
 }
-.section.active { opacity: 1; transform: scale(1); }
+.section.active { 
+  opacity: 1; 
+  transform: scale(1); 
+}
+
+/* No mobile, mostrar apenas a seção ativa */
+@media (max-width: 768px) {
+  .section {
+    opacity: 1 !important;
+    transform: none !important;
+    position: relative !important;
+    width: 100% !important;
+    min-width: auto !important;
+    height: auto !important;
+    float: none !important;
+    display: none !important;
+  }
+  
+  .section.active {
+    display: block !important;
+  }
+}
 
 .section#home {
   display: flex;
@@ -616,14 +652,15 @@ button[type="submit"]:hover,
 }
 
 .botao-chamativo {
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   box-sizing: border-box;
 }
+
 .portfolio-card {
   padding-bottom: 20px;
   max-width: 1200px;
   width: 100%;
-  padding: 3rem 4rem;
+  padding: 2.5rem 3rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #e0e0e0;
@@ -635,9 +672,16 @@ button[type="submit"]:hover,
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin: 2rem auto;
-  gap: 3rem;
+  margin: 1.5rem auto;
+  gap: 2.5rem;
   box-sizing: border-box;
+}
+
+.container-principal {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
 }
   
 
@@ -649,10 +693,27 @@ button[type="submit"]:hover,
 
 .portfolio-card img {
   transition: transform 0.3s ease;
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  user-select: none;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.1);
 }
 
 .portfolio-card:hover img {
   transform: scale(1.05);
+}
+
+/* Texto ocupa 60% com padding */
+.portfolio-card .sobre-texto {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  overflow-y: auto;
 }
 
 .portfolio-card h2 {
@@ -669,7 +730,7 @@ button[type="submit"]:hover,
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 1rem;
-  color: #888;
+  color: #999;
   flex-grow: 1;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -690,21 +751,12 @@ button[type="submit"]:hover,
 
 .portfolio-card .botao-chamativo:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
 }
 
 
 
-/* Efeito "acender" no hover */
-.portfolio-card:hover,
-.portfolio-card:focus {
-  box-shadow:
-    0 0 20px 5px rgba(0, 102, 204, 0.8),
-    0 0 40px 10px rgba(0, 153, 255, 0.7),
-    0 0 60px 20px rgba(0, 204, 255, 0.6);
-  transform: scale(1.02);
-  outline: none;
-}
+
 
 /* Foto ocupa 40% */
 .portfolio-card img {
@@ -727,61 +779,22 @@ button[type="submit"]:hover,
   overflow-y: auto;
 }
 
-/* Títulos e textos */
-.portfolio-card h2 {
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
-}
-
-.portfolio-card p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #888;
-}
-
-/* Botão */
-.portfolio-card .botao-chamativo {
-  width: max-content;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.95rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  background: #fff;
-  border: none;
-  color: #0a0a0a;
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-  align-self: flex-start;
-}
-
-.portfolio-card .botao-chamativo:hover,
-.portfolio-card .botao-chamativo:focus {
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
-  outline: none;
-}
-.container-principal {
-  display: flex;
-  flex-direction: row;
-  height: 100vh; /* altura fixa para desktop */
-  overflow: hidden; /* sem scroll vertical */
-}
-
 /* Carde demo */
 .modal {
   display: none; 
   position: fixed;
-  z-index: 9999;
+  z-index: 10000;
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  backdrop-filter: blur(5px);
+  background-color: rgba(0,0,0,0.95);
+  backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.2s ease;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal[style*="flex"] {
+  display: flex !important;
 }
 
 @keyframes fadeIn {
@@ -793,6 +806,15 @@ button[type="submit"]:hover,
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .modal-content {
   animation: scaleIn 0.3s ease;
   position: relative;
@@ -800,6 +822,9 @@ button[type="submit"]:hover,
   max-height: 90vh;
   width: 100%;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content iframe {
@@ -810,6 +835,7 @@ button[type="submit"]:hover,
   border-radius: 8px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   display: block;
+  margin: 0 auto;
 }
 
 @keyframes scaleIn {
@@ -825,24 +851,35 @@ button[type="submit"]:hover,
 
 .close {
   cursor: pointer;
-  font-size: 28px;
+  font-size: 32px;
   color: #fff;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
-  padding: 8px 12px;
+  top: -50px;
+  right: 50%;
+  transform: translateX(50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
   line-height: 1;
-  z-index: 10;
-  border-radius: 4px;
-  backdrop-filter: blur(4px);
+  z-index: 10001;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  font-weight: bold;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.close:hover {
+.close:hover,
+.close:focus {
   color: #fff;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(50%) scale(1.1);
+  outline: none;
 }
 
 /* Alerta flutuante no topo */
@@ -908,14 +945,118 @@ button[type="submit"]:hover,
 /* Extra small mobile (320px - 374px) */
 @media (max-width: 374px) {
   .home-header {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     white-space: normal;
     line-height: 1.2;
   }
 
   .home-subtitle {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .home-paragraph {
     font-size: 0.85rem;
-    line-height: 1.4;
+    max-width: 100%;
+  }
+
+  .cta-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 240px;
+  }
+
+  nav {
+    padding: 0.5rem 0.75rem;
+  }
+
+  nav ul {
+    gap: 0.4rem;
+  }
+
+  nav ul li a {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .projetos-container {
+    padding: 0 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .projeto-card {
+    padding: 1rem;
+  }
+
+  .projeto-card h3 {
+    font-size: 1rem;
+  }
+
+  .projeto-card p {
+    font-size: 0.85rem;
+  }
+
+  .portfolio-card {
+    padding: 1.25rem 0.75rem;
+    gap: 1rem;
+  }
+
+  .portfolio-card img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .portfolio-card h2 {
+    font-size: 1.25rem;
+  }
+
+  .portfolio-card p {
+    font-size: 0.85rem;
+  }
+
+  .contato-form {
+    padding: 0 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .contato-title {
+    font-size: 1.5rem;
+  }
+
+  input,
+  textarea {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .social-links {
+    gap: 0.75rem;
+  }
+
+  .social-links a {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  #btnTopo {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+/* Small mobile (375px - 480px) */
+@media (min-width: 375px) and (max-width: 480px) {
+  .home-header {
+    font-size: 1.75rem;
+  }
+
+  .home-subtitle {
+    font-size: 0.85rem;
   }
 
   .home-paragraph {
@@ -923,7 +1064,7 @@ button[type="submit"]:hover,
   }
 
   .cta-button {
-    padding: 0.7rem 1.5rem;
+    padding: 0.65rem 1.4rem;
     font-size: 0.9rem;
   }
 
@@ -958,8 +1099,8 @@ button[type="submit"]:hover,
   }
 }
 
-/* Small mobile (375px - 480px) */
-@media (min-width: 375px) and (max-width: 480px) {
+/* Mobile (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
   .home-header {
     font-size: 2rem;
   }
@@ -968,28 +1109,59 @@ button[type="submit"]:hover,
     font-size: 0.9rem;
   }
 
-  .projetos-container {
-    padding: 0 1rem;
-  }
-}
-
-/* Mobile (481px - 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .home-header {
-    font-size: 2.25rem;
-  }
-
-  .home-subtitle {
+  .home-paragraph {
     font-size: 0.95rem;
   }
 
+  .cta-button {
+    padding: 0.7rem 1.6rem;
+    font-size: 0.95rem;
+  }
+
+  nav ul {
+    gap: 0.75rem;
+  }
+
+  nav ul li a {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+  }
+
   .projetos-container {
-    padding: 0 1.25rem;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .projeto-card {
+    padding: 1.5rem;
+  }
+
+  .projeto-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .portfolio-card {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
   }
 
   .portfolio-card img {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .portfolio-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .contato-form {
+    padding: 0 1rem;
+  }
+
+  .social-links a {
+    width: 46px;
+    height: 46px;
+    font-size: 19px;
   }
 }
 
@@ -1000,7 +1172,7 @@ button[type="submit"]:hover,
     margin-top: 0;
     padding-top: 0;
     line-height: 1.5;
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-left: 0;
     text-align: center;
     max-width: 100%;
@@ -1009,7 +1181,7 @@ button[type="submit"]:hover,
   .home-header {
     margin-top: 0;
     padding-top: 0;
-    font-size: 2rem;
+    font-size: 1.75rem;
     margin-left: 0;
     text-align: center;
     white-space: normal;
@@ -1017,7 +1189,7 @@ button[type="submit"]:hover,
   }
 
   .home-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-align: center;
     line-height: 1.4;
     max-width: 100%;
@@ -1033,32 +1205,36 @@ button[type="submit"]:hover,
 
   .cta-button {
     width: 100%;
-    max-width: 280px;
+    max-width: 260px;
     text-align: center;
-    padding: 0.75rem 1.5rem;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
   }
 
   #home {
-    padding-top: 2rem;
+    padding-top: 4rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    padding-bottom: 0.5rem;
     min-height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
   nav {
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 1rem;
   }
 
   nav ul {
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
   nav ul li a {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
   }
 
   body {
@@ -1072,34 +1248,33 @@ button[type="submit"]:hover,
     height: auto;
     overflow-y: auto;
     padding-bottom: 1rem;
-    overflow: hidden;
   }
 
   .sections-wrapper {
     width: 100% !important;
     height: auto !important;
-    margin-top: 60px;
+    margin-top: 50px;
     overflow-x: hidden !important;
     overflow-y: visible !important;
     transform: none !important;
     scroll-snap-type: none !important;
-    overflow: hidden;
+    display: block !important;
   }
 
   .section {
     width: 100% !important;
     height: auto !important;
-    padding: 2rem 1rem;
+    padding: 0.5rem 1rem;
     scroll-snap-align: none !important;
     float: none !important;
-    position: static !important;
+    position: relative !important;
     margin-bottom: 0;
     min-height: auto;
     overflow: visible;
   }
 
   .section:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   /* Sobre e portfolio cards em coluna */
@@ -1107,8 +1282,8 @@ button[type="submit"]:hover,
   .portfolio-card {
     margin-top: 0;
     flex-direction: column;
-    padding: 2rem 1.25rem;
-    gap: 1.5rem;
+    padding: 1.25rem 1rem;
+    gap: 1rem;
     width: auto;
     margin-left: 0;
     margin-right: 0;
@@ -1116,9 +1291,9 @@ button[type="submit"]:hover,
   }
 
   .projetos-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     text-align: center;
-    margin: 1.5rem 0 1rem 0;
+    margin: 0.5rem 0 0.75rem 0;
     padding: 0 1rem;
     white-space: normal;
     overflow: visible;
@@ -1129,12 +1304,12 @@ button[type="submit"]:hover,
 
   .sobre-container {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .portfolio-card img {
-    width: 160px;
-    height: 160px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto;
   }
 
@@ -1144,19 +1319,19 @@ button[type="submit"]:hover,
   }
 
   .portfolio-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .portfolio-card p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   /* Projetos: 1 coluna */
   .projetos-container {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     grid-template-columns: 1fr;
-    padding: 0 1rem;
-    gap: 1rem;
+    padding: 0 0.75rem;
+    gap: 0.75rem;
   }
 
   .projeto-card {
@@ -1164,71 +1339,82 @@ button[type="submit"]:hover,
     width: 100%;
     max-width: 100%;
     margin-top: 0;
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .projeto-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   .projeto-card p {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+  }
+
+  .projeto-card .tech {
+    font-size: 0.8rem;
   }
 
   /* Contato e formulário centralizados */
   .contato-form {
     width: 100%;
     max-width: 100%;
-    margin: 0 auto 2rem;
-    padding: 0 1rem;
-    gap: 1rem;
+    margin: 0 auto 1rem;
+    padding: 0 0.75rem;
+    gap: 0.75rem;
   }
 
   .contato-title {
-    font-size: 1.75rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   input,
   textarea {
-    font-size: 0.9rem;
-    padding: 0.75rem 0.875rem;
+    font-size: 0.875rem;
+    padding: 0.65rem 0.75rem;
+    width: 100%;
   }
 
   /* Social links */
   .social-links {
-    gap: 1rem;
-    margin-top: 1.5rem;
+    gap: 0.875rem;
+    margin-top: 1rem;
   }
 
   .social-links a {
-    width: 44px;
-    height: 44px;
-    font-size: 18px;
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
   }
 
   /* Botão topo */
   #btnTopo {
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
+    bottom: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+
+  /* Botões de projeto */
+  .botao-chamativo {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
   }
 }
 
 /* Tablet (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .home-header {
-    font-size: 2.75rem;
+    font-size: 2.5rem;
   }
 
   .home-subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .home-paragraph {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
 
   .projetos-container {
@@ -1239,6 +1425,7 @@ button[type="submit"]:hover,
 
   .projeto-card {
     max-width: 100%;
+    padding: 1.5rem;
   }
 
   .portfolio-card {
@@ -1248,12 +1435,16 @@ button[type="submit"]:hover,
   }
 
   .portfolio-card img {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
   }
 
   .portfolio-card h2 {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
+  }
+
+  .portfolio-card p {
+    font-size: 0.95rem;
   }
 
   .contato-form {
@@ -1261,7 +1452,15 @@ button[type="submit"]:hover,
   }
 
   nav ul {
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+  }
+
+  .section {
+    padding: 3rem 1.5rem;
   }
 }
 
@@ -1297,10 +1496,18 @@ button[type="submit"]:hover,
   }
   
   .close {
-    top: 6px;
-    right: 6px;
-    font-size: 24px;
-    padding: 6px 10px;
+    top: -45px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 28px;
+    padding: 6px 12px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .close:hover,
+  .close:focus {
+    transform: translateX(50%) scale(1.1);
   }
 }
 
@@ -1311,9 +1518,17 @@ button[type="submit"]:hover,
   }
   
   .close {
-    top: 4px;
-    right: 4px;
-    font-size: 22px;
-    padding: 4px 8px;
+    top: -40px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 24px;
+    padding: 4px 10px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .close:hover,
+  .close:focus {
+    transform: translateX(50%) scale(1.1);
   }
 }
